@@ -1,0 +1,86 @@
+/* .pageContainer {
+  margin-left: 80px;
+} */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 60px;
+  background-color: white;
+  border-bottom: 1px solid rgb(230, 230, 230);
+}
+.logo {
+  width: 70px;
+  height: 70px;
+}
+
+.login {
+  border: 1px solid rgb(51, 51, 216);
+  padding: 12px 30px;
+  border-radius: 50px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 15px;
+  outline: none;
+  margin-right: 20px;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+.hero {
+  width: 50%;
+  margin: 30px auto;
+  margin-top: 70px;
+  line-height: 60px;
+}
+
+.hero h1 {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.paragraph {
+  margin-top: 20px;
+  text-align: center;
+  line-height: 20px;
+  color: gray;
+}
+
+.imgContainer {
+  margin-top: -80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero img {
+  width: 1200px;
+  margin: 0px auto;
+}
+
+
+.footerText {
+  border-top: solid 1px rgb(219, 219, 219);
+  width: 80%;
+  margin: 0px auto;
+  text-align: center;
+  padding: 25px;
+  text-align: center;
+}
+
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+
+  .hero {
+    width: 80%;
+  }
+
+  .hero img {
+    width: 400px;
+    margin: 70px auto;
+  }
+
+}

@@ -1,0 +1,109 @@
+
+.pageContainer {
+    margin-top: 100px;
+}
+
+.formContainer {
+    background-color: white;
+    width: 30%;
+    margin: 50px auto;
+    border-radius: 8px;
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+    border: solid 1px rgb(207, 207, 207);
+
+}
+
+.formContainer form {
+  padding: 10px 15px !important;
+  margin: 0px !important;
+}
+
+.inputField {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    padding: 15px 15px 15px 10px;
+    font-size: 16px;
+    border: none;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 8px;
+    margin: 10px 0px;
+    outline: none;
+}
+
+.inputField:focus {
+    border-bottom: 2px solid rgb(1, 24, 224);
+}
+
+
+.buttons {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 20px 0px;
+
+}
+.buttons > div {
+    margin:8px;
+    margin-bottom: 0px;
+}
+
+.submitBtn {
+    border: 1px solid rgb(51, 51, 216);
+    padding: 15px 30px;
+    border-radius: 50px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .submitBtn:hover {
+    background-color: rgb(209, 233, 255);
+  }
+
+  .googleBtn {
+    border: 1px solid rgb(216, 51, 51);
+    padding: 15px 30px;
+    border-radius: 50px;
+    background-color: white;
+    color: rgb(24, 24, 24);
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .googleBtn:hover {
+    background-color:  rgb(216, 51, 51);
+    color: white;
+  }
+
+  .switchBtn {
+    border-radius: 4px;
+    padding: 10px;
+    padding-bottom: 30px;
+    margin-top: 5px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    border:none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .switchBtn:hover {
+      background-color: rgb(245, 245, 245);
+  }
+
+  
+  @media screen and (max-width: 992px) {
+  /* For desktop: */
+  .formContainer {
+    width: 95%;
+
+}
+  
+}

@@ -1,0 +1,21 @@
+.dropzone {
+  height: 4rem;
+  width: 100%;
+  margin: 0.5rem;
+  padding: 1rem;
+  border: 2px dashed rgb(182, 182, 182);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.active {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  background-color: rgb(21, 88, 233);
+  color: white;
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 5px;
+}

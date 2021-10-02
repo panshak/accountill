@@ -1,0 +1,364 @@
+.pageLayout {
+  display: flex;
+}
+
+
+.header {
+  display: flex;
+  padding: 50px;
+  justify-content: space-between;
+}
+
+.buttons {
+  margin-top: 40px;
+  margin-left: 15%;
+  margin-right: 12%;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #1976d2;
+  border-radius: 50px;
+  padding: 12px 30px 12px 20px;
+  background-color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+  margin: 10px;
+  font-size: 16px;
+  height: 54px;
+}
+
+.btn:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+
+.downloadBtn {
+  width: 20%
+}
+
+@media all and (max-width: 768px) {
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .downloadBtn {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+}
+
+.logo {
+  width: 150px;
+ 
+}
+
+.invoiceNumber {
+  text-align: right;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: gray;
+}
+
+.invoiceLayout {
+  width: 63%;
+  min-height: 500px;
+  background-color: white;
+  margin: 0px auto 5px;
+  border-radius: 10px;
+  /* border: solid 1px rgb(236, 236, 236); */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+  /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+      0 100px 80px rgba(0, 0, 0, 0.07); */
+}
+
+.contacts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+  border-top: 1px rgb(221, 221, 221) solid;
+}
+
+.contacts p {
+  font-size: 14px;
+  color: gray;
+  line-height: 8px;
+}
+
+.contacts h4 {
+  font-size: 15px;
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
+  color: gray;
+}
+
+.summaryItem p, h4 {
+  padding: 12px;
+}
+
+.address {
+  text-align: left;
+}
+
+.dates {
+  text-align: right;
+}
+
+form {
+  padding: 0 40px 40px 40px !important;
+}
+
+/* TABLE STYLING */
+table {
+  font-family: Roboto, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td,
+table th {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0px;
+}
+
+table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+table tr:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+thead {
+  padding-left: 100px;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f5f5f5;
+  color: rgb(59, 59, 59);
+  border-top: 1px rgb(212, 212, 212) solid;
+  border-bottom: 1px rgb(212, 212, 212) solid;
+  font-size: 14px;
+}
+
+tr input[type="text"] {
+  background: transparent;
+  -moz-appearance: textfield;
+}
+
+.number {
+  width: 12%;
+  padding: 5px;
+  /* adjust this for mobile view */
+}
+
+/* Textbox height determined height of tr*/
+.number input[type="number"] {
+  width: 100%;
+  height: 35px;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 15px;
+  color: rgb(59, 59, 59);
+  -moz-appearance: textfield;
+}
+
+.amount {
+  width: 100%;
+  height: 45px;
+  border: none !important;
+  outline: none;
+  background: none;
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+}
+.discount {
+  width: 100%;
+  height: 45px;
+  border: none !important;
+  outline: none;
+  background: none;
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.item input[type="text"] {
+  width: 90%;
+  height: 35px;
+  border: none;
+  outline: none;
+  background: none;
+  color: rgb(59, 59, 59);
+}
+
+.addButton {
+  display: flex;
+  align-items: flex-start;
+  padding-left: 15px;
+  padding-top: 10px;
+}
+
+.addButton button {
+  width: 40px;
+  height: 40px;
+  background-color: #007fff;
+  color: #fff;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  font-size: 22px;
+  text-align: center;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.048),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.069), 0 12.5px 10px rgba(0, 0, 0, 0.085),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.101), 0 41.8px 33.4px rgba(0, 0, 0, 0.122),
+    0 100px 80px rgba(0, 0, 0, 0.17);
+  cursor: pointer;
+}
+
+.addButton button:hover {
+  background-color: #df1174;
+}
+
+.delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-left: 30px; */
+}
+
+.submitButton {
+  margin: 20px auto;
+  padding: 18px 25px;
+  border: 2px solid #007fff;
+  background-color: white;
+  border-radius: 30px;
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  color: rgb(73, 73, 73);
+  cursor: pointer;
+  outline: none;
+}
+
+.submitButton:hover {
+  background-color: #007fff;
+  color: white;
+}
+
+.invoiceSummary div {
+  border-bottom: 1px solid rgb(231, 231, 231);
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: left;
+  margin-left: 50%;
+  font-size: 14px;
+  display: flex;
+  color: gray;
+}
+
+.summary {
+  background-color: rgb(247, 247, 247);
+  font-weight: 500;
+  padding: 15px 0px;
+  padding-left: 15px;
+}
+
+.summaryItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summaryItem input {
+  font-family: "Roboto", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  text-align: right;
+}
+
+.toolBar {
+  margin-top: 50px;
+}
+
+.summaryItem span {
+  text-align: left;
+}
+.note {
+  margin-top: 20px;
+}
+
+.note h4 {
+  text-align: left;
+}
+
+.toolBar {
+  display: flex;
+}
+
+
+.paymentHistory {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.space {
+  width: 75%;
+}
+
+.totalUnpaid {
+  text-align: center;
+  padding-top: 2px;
+  width: 20px;
+  height: 20px;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  border-radius: 100%;
+  background-color: green;
+}
+
+@media all and (max-width: 768px) {
+
+  .invoiceLayout {
+   width: 97%;
+  }
+
+  .space {
+   width: 50%;
+  }
+
+
+  .invoiceSummary div {
+    margin-left: 0%;
+   
+  }
+
+}

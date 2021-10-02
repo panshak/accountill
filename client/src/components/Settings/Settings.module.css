@@ -1,0 +1,161 @@
+.pageContainer {
+  /* padding-left: 150px; */
+  background-color: #EEEEEE;
+  padding-bottom: 96px;
+  
+  min-height: 70%;
+  min-height: -webkit-calc(100% - 186px);
+  min-height: -moz-calc(100% - 186px);
+  min-height: calc(100% - 186px);
+}
+
+.hero {
+  width: 50%;
+  margin: 0px auto;
+  padding: 50px;
+  line-height: 60px;
+}
+
+.hero h1 {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.paragraph {
+  margin-top: 20px;
+  text-align: center;
+  line-height: 20px;
+  color: gray;
+}
+
+.imgContainer {
+  margin-top: -80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero img {
+  width: 1200px;
+  margin: 0px auto;
+}
+
+
+
+
+/* .featuresContainer {
+    margin: 0px auto;
+    width: 100%;
+    padding: 0px 60px 20px 60px;
+  
+   
+  } */
+  
+  /*
+      AUTO GRID
+      Set the minimum item size with `--auto-grid-min-size` and you'll
+      get a fully responsive grid with no media queries.
+    */
+    .autoGrid {
+      --auto-grid-min-size: 16rem;
+      width: 70%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fill,
+        minmax(var(--auto-grid-min-size), 1fr)
+      );
+      grid-gap: 0.5rem;
+    }
+    
+  
+    
+    .listItem {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 120px;
+      height: 160px;
+      padding: 1rem;
+      list-style-type: none;
+      text-align: center;
+      border-bottom: 1px solid rgb(184, 184, 184);
+      border-radius: 4px;
+      background-color: white;
+    }
+  
+
+    
+    .listItem h2 {
+      text-align: center;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 23px;
+      cursor: pointer;
+    }
+    
+    
+    .listItem p {
+      text-align: center;
+      font-size: 40px;
+      line-height: 45px;
+      padding: 0px 25px 10px 25px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 100;
+      cursor: pointer;
+      color: rgb(0, 0, 0);
+    }
+    
+    .listItem:hover {
+      background-color: #f8f8f8;
+     
+    }
+    
+    .listItem:hover h2 {
+      color: rgb(0, 0, 0);
+     
+    }
+    
+  
+    
+    .imgThumbnail {
+      margin: 0px auto;
+      border-radius: 100%;
+      object-fit: cover;
+      width: 25px;
+      height: 25px;
+    }
+    .imgThumbnail:hover {
+      filter: grayscale(100%);
+      cursor: pointer;
+    }
+  
+  
+  .imgContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+    
+  
+    @media all and (max-width: 768px) {
+    
+      .items {
+        width: 100%;
+      }
+  
+      .imgThumbnail {
+        width: 20px;
+        height: 20px;
+      }
+    
+      .hero {
+        width: 100%;
+      }
+     
+    }
+    
+

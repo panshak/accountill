@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 60px;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    /* background-color: #1976d2; */
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .login {
+    border: 1px solid rgb(51, 51, 216);
+    padding: 12px 30px;
+    border-radius: 50px;
+    background-color: white;
+    color: rgb(51, 51, 216);
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    margin-right: 20px;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  }
+
+  .login:hover {
+    background-color: rgb(209, 233, 255);
+  }

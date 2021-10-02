@@ -1,0 +1,253 @@
+.pageContainer {
+  /* padding-left: 150px; */
+  background-color: #EEEEEE;
+  padding-bottom: 96px;
+  min-height: 85%;
+  min-height: -webkit-calc(100% - 186px);
+  min-height: -moz-calc(100% - 186px);
+  min-height: calc(100% - 186px);
+}
+
+
+.stat {
+  margin-top: 30px;
+}
+
+
+/* .featuresContainer {
+    margin: 0px auto;
+    width: 100%;
+    padding: 0px 60px 20px 60px;
+  
+   
+  } */
+  
+  /*
+      AUTO GRID
+      Set the minimum item size with `--auto-grid-min-size` and you'll
+      get a fully responsive grid with no media queries.
+    */
+    .autoGrid {
+      --auto-grid-min-size: 14rem;
+      width: 85%;
+      margin: 10px auto;
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fill,
+        minmax(var(--auto-grid-min-size), 1fr)
+      );
+      grid-gap: 0.5rem;
+    }
+     
+    .listItem {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 120px;
+      height: 110px;
+      padding: 1rem;
+      list-style-type: none;
+      text-align: center;
+      border-bottom: 1px solid rgb(184, 184, 184);
+      border-radius: 4px;
+      background-color: white;
+    }
+  
+
+    
+    .listItem h2 {
+      text-align: left;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 10px;
+      padding: 0px 25px;
+      cursor: pointer;
+      color: rgb(156, 156, 156)
+    }
+    
+    
+    .listItem p {
+      text-align: center;
+      font-size: 25px;
+      line-height: 20px;
+      text-align: left;
+      padding: 0px 25px 10px 25px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 100;
+      cursor: pointer;
+      /* color: rgb(82, 82, 82) */
+    }
+    
+    .listItem:hover {
+      background-color: #f8f8f8;
+     
+    }
+    
+    .listItem:hover h2 {
+      color: rgb(0, 0, 0);
+     
+    }
+    
+
+
+    
+    .grid {
+      --auto-grid-min-size: 20rem;
+      width: 85%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fill,
+        minmax(var(--auto-grid-min-size), 1fr)
+      );
+      grid-gap: 0rem;
+    }
+
+
+      
+    .entry {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 120px;
+      height: 60px;
+      padding: 1rem 2rem;
+      list-style-type: none;
+      text-align: left;
+      border-bottom: 1px solid rgb(224, 224, 224);
+      /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
+      border-radius: 0px;
+      background-color: white;
+    }
+
+
+    .grid button {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      border: none;
+      background-color: #1976d2;
+      color: white;
+       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.068), 0 3px 6px rgba(0, 0, 0, 0.096);
+    }
+
+
+    .donutAndRecentPayment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 97%;
+      margin: 0px auto;
+    }
+
+    .recentPayment {
+      padding: 20px;
+      width: 65%;
+      min-height: 200px;
+    }
+
+    .donut {
+      width: 35%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 74px;
+      margin-left: -50px;
+      padding: 28px;
+      margin-top: 52px;
+      border-bottom: 1px solid rgb(184, 184, 184);
+      /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
+      border-radius: 4px;
+    }
+
+   
+
+    .smallText {
+      font-size: 13px;
+      color: gray;
+    }
+
+    .donut {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .table {
+      width: 85%;
+      margin: 20px auto;
+      /* background-color: white; */
+      
+      /* padding: 20px; */
+    }
+
+
+
+    .table table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+
+
+    .table button {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      border: none;
+      background-color: #d4eaff;
+    }
+
+
+    .table td {
+      padding: 15px;
+      border: none;
+      background-color: white;
+      border-bottom: 1px solid rgb(223, 223, 223);
+     
+    }
+
+    .table table {
+      border-collapse:separate; 
+      border-spacing:0 0px;
+    }
+
+
+  
+    @media all and (max-width: 768px) {
+    
+      .items {
+        width: 100%;
+      }
+
+      .donutAndRecentPayment {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .recentPayment {
+        width: 100%;
+      }
+  
+      .donut {
+        width: 100%;
+      }
+
+      .grid {
+        --auto-grid-min-size: 20rem;
+        width: 100%;
+      }
+
+      .donut {
+        margin-left: 40px;
+      }
+     
+    }
+    
+
