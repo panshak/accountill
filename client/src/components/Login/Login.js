@@ -11,6 +11,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { createProfile } from '../../actions/profile'
 // import Google from './Google'
 import { useSnackbar } from 'react-simple-snackbar'
+import ProgressButton from 'react-progress-button'
 
 
 
@@ -93,7 +94,8 @@ const Login = () => {
           </Grid>
           <div className={styles.buttons}>
                <div>
-                    <button className={styles.submitBtn}> { isSignup ? 'Sign Up' : 'Sign In' }</button>
+                    {/* <button className={styles.submitBtn}> { isSignup ? 'Sign Up' : 'Sign In' }</button> */}
+                    <ProgressButton>{ isSignup ? 'Sign Up' : 'Sign In' }</ProgressButton>
                 </div>
                 <div> 
                     <GoogleLogin

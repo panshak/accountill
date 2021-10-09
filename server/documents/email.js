@@ -100,7 +100,7 @@ hr {
 }
 
 .footer-logo {
-    width: 150px;
+    width: 165px;
     margin: 20px auto;
     display: block
     
@@ -137,7 +137,7 @@ hr {
                   </a>
               </div>
               
-              <p style="font-size: 14px; padding: 20px">No: ${id}</p>
+              <p style="font-size: 14px; padding: 20px">#${id}</p>
               
               <div class="address">
                   <h2>${company.businessName}</h2>
@@ -148,11 +148,11 @@ hr {
         </div>
         
       <div class"footer">
-          <a href="#">
-          <img class="footer-logo" src="https://www.onlygfx.com/wp-content/uploads/2016/01/hexagon-photography-icon-logo-1.png"/>
+          <a href="https://arcinvoice.com">
+          <img class="footer-logo" src="https://i.postimg.cc/C5fxh51H/Arc-Invoice-Logo2.png"/>
         </a>
       </div>
-    <p style="text-align: center">Make beautiful invoice for free at accountill.com</p>
+    <p style="text-align: center">Make beautiful invoice for free at arcinvoice.com</p>
     </div>
     </body>
 </html>`

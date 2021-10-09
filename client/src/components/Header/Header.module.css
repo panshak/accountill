@@ -7,6 +7,17 @@
     /* background-color: #1976d2; */
   }
 
+
+  .header2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    border-bottom: 1px solid rgb(218, 218, 218);
+    padding-left: 20px;
+    /* background-color: #1976d2; */
+  }
+
   .logo {
     width: 70px;
     height: 70px;
