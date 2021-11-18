@@ -49,7 +49,6 @@ const Settings = () => {
     e.preventDefault();
       dispatch(updateProfile(profiles?._id, form, openSnackbar));
       setSwitchEdit(0)
-      window.location.reload()
 
   };
 

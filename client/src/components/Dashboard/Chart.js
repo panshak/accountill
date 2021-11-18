@@ -3,10 +3,14 @@ import ReactApexChart from "react-apexcharts";
 
 function Chart({ paymentHistory }) {
 
+  
+
 
     let paymentDates = []
     for(let i = 0; i < paymentHistory.length; i++) {
-            paymentDates = [...paymentDates, paymentHistory[i].datePaid]
+      const newDate = new Date(paymentHistory[i].datePaid);
+      let localDate = newDate.toLocaleDateString();
+            paymentDates = [...paymentDates, localDate]
     }
 
 
@@ -14,36 +18,25 @@ function Chart({ paymentHistory }) {
     for(let i = 0; i < paymentHistory.length; i++) {
             paymentReceived = [...paymentReceived, paymentHistory[i].amountPaid]
     }
+  
 
 
   const series = [
-    // {
-    //   name: "Cases",
-    //   data: [
-    //     555,
-    //     12038,
-    //     69030,
-    //     88369,
-    //     167466,
-    //     932638,
-    //     2055423,
-    //     3343777,
-    //     3845718,
-    //   ],
-    // },
-    // {
-    //   name: "Recovered",
-    //   data: [28, 284, 9394, 42710, 76026, 191853, 501538, 1029651, 1255481],
-    // },
+
     {
       name: "Payment Recieved",
       data: paymentReceived,
     },
   ];
   const options = {
+    chart: {
+      zoom: { enabled: false },
+      toolbar: {show: false},
+    },
     dataLabels: {
       enabled: false,
     },
+
     stroke: {
       curve: "smooth",
     },

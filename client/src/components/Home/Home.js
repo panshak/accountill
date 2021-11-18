@@ -13,7 +13,7 @@ const Home = () => {
                     <p>Free and Open Source Invoicing application made with MongoDB, Express, React & Nodejs</p>
                 </div>
                 <div className={styles.imgContainer}>
-                    <img src="https://res.cloudinary.com/almpo/image/upload/v1628707655/special/mern-Invoice-app_tttmwn.png" alt="invoicing-app"/>
+                    <img src="https://res.cloudinary.com/almpo/image/upload/v1637241441/special/banner_izy4xm.png" alt="invoicing-app"/>
                 </div>
             </section>
         </div>

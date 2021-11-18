@@ -180,27 +180,27 @@
 
     .table {
       width: 85%;
-      margin: 20px auto;
-      /* background-color: white; */
-      
-      /* padding: 20px; */
+      margin: 0 auto;
+      overflow-x:auto
+
     }
 
-
-
     .table table {
-      display: block;
-      overflow-x: auto;
+      border-collapse:separate; 
+      border-spacing:0 0px;
+      /* overflow-x: auto; */
       white-space: nowrap;
-  }
-
+    }
+    
 
     .table button {
       width: 30px;
       height: 30px;
       border-radius: 100%;
       border: none;
-      background-color: #d4eaff;
+      background-color: #1976d2;
+      color: white;
+       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.068), 0 3px 6px rgba(0, 0, 0, 0.096);
     }
 
 
@@ -212,14 +212,14 @@
      
     }
 
-    .table table {
-      border-collapse:separate; 
-      border-spacing:0 0px;
-    }
-
 
   
     @media all and (max-width: 768px) {
+
+      .table {
+        width: 95%;
+  
+      }
     
       .items {
         width: 100%;
@@ -247,7 +247,11 @@
       .donut {
         margin-left: 40px;
       }
-     
+
+      /* .table {
+        width: 40%;
+      }
+      */
     }
     
 

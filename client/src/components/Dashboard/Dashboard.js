@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getInvoicesByUser } from '../../actions/invoiceActions'
 import Empty from '../svgIcons/Empty'
 import Chart from './Chart'
-import Donut from './Donut'
+// import Donut from './Donut'
 import moment from 'moment'
 import { Check, Pie, Bag, Card, Clock, Frown } from './Icons'
 import Spinner from '../Spinner/Spinner'
@@ -33,6 +33,14 @@ const Dashboard = () => {
         
     }
 
+
+    //sort payment history by date
+   const sortHistoryByDate =  paymentHistory.sort(function(a, b) {
+        var c = new Date(a.datePaid);
+        var d = new Date(b.datePaid);
+        return d-c;
+    });
+    
     
     let totalPaid = 0
     for(let i = 0; i < invoices.length; i++) {
@@ -168,15 +176,6 @@ const Dashboard = () => {
                  
                 </ul>
 
-
-
-                <ul className={styles.autoGrid}>
-                     
-                        
-                 
-                </ul>
-
-
             </section>
 
             <section>
@@ -186,56 +185,51 @@ const Dashboard = () => {
                 <ReactChart paymentHistory={paymentHistory} />
             </section> */}
 
-            <section className={styles.donutAndRecentPayment}>
+            {/* <section className={styles.donutAndRecentPayment}>
                 <div className={styles.recentPayment}>
-                    <h1 style={{textAlign: 'center', paddingBottom: '20px'}}>{paymentHistory.length ? 'Recent Payment' : 'No payment received yet'}</h1>
-
-                        <ul className={styles.grid}>
-                        {
-                            paymentHistory.slice(-6).reverse().map((p) => (
-                                <li className={styles.entry} key={p._id}>
-                                    <button>{p?.paidBy?.charAt(0)}</button>
-                                    <p style={{fontSize: '15px', textAlign: 'left'}}>{p.paidBy}</p>
-                                    <p className={styles.smallText} >{moment(p.datePaid).fromNow()}</p>
-                                    <h3 style={{color: '#00A86B', fontSize: '14px'}}>₦{toCommas(p.amountPaid)}</h3>
-                                </li>
-                            ))  
-                            }
-                        </ul>
                    
                 </div>
                 <div className={styles.donut}>
                     <Donut unpaid={unpaidInvoice} paid={paid} partial={partial} />
                 </div>
 
-            </section>
-
-
-        {/* <section className={styles.table}>
-        <div>
-        <table>
-        <tbody>
-         <tr>
-          <th style={{padding: '15px'}}></th>
-          <th style={{padding: '15px'}}>Paid By</th>
-          <th style={{padding: '15px'}}>Date Paid</th>
-          <th style={{padding: '15px'}}>Amount Paid</th>
-          <th style={{padding: '15px'}}>Payment Method</th>
-        </tr>
-         {paymentHistory.slice(-5).map((record) => (
-           <tr  className={styles.tableRow} key={record._id}>
-            <td><button>{record?.paidBy?.charAt(0)}</button></td>
-            <td>{record.paidBy}</td>
-            <td>{moment(record.datePaid).format('MMMM Do YYYY')}</td>
-            <td><h3 style={{color: '#00A86B', fontSize: '14px'}} >{toCommas(record.amountPaid)}</h3></td>
-            <td>{record.paymentMethod}</td>
-          </tr>
-
-         ))}
-         </tbody>
-         </table>
-            </div>
             </section> */}
+
+
+                <section>
+                <h1 style={{textAlign: 'center', padding: '30px' }}>{paymentHistory.length ? 'Recent Payments' : 'No payment received yet'}</h1>
+                    <div>
+                    <div className={styles.table}>
+                       
+                        <table>
+                            <tbody>
+                            {paymentHistory.length !== 0 && (
+                                <tr>
+                                <th style={{padding: '15px'}}></th>
+                                <th style={{padding: '15px'}}>Paid By</th>
+                                <th style={{padding: '15px'}}>Date Paid</th>
+                                <th style={{padding: '15px'}}>Amount Paid</th>
+                                <th style={{padding: '15px'}}>Payment Method</th>
+                                <th style={{padding: '15px'}}>Note</th>
+                            </tr>
+                            )}
+                            
+                            {sortHistoryByDate.slice(-10).map((record) => (
+                            <tr  className={styles.tableRow} key={record._id}>
+                                <td><button>{record?.paidBy?.charAt(0)}</button></td>
+                                <td>{record.paidBy}</td>
+                                <td>{moment(record.datePaid).format('MMMM Do YYYY')}</td>
+                                <td><h3 style={{color: '#00A86B', fontSize: '14px'}} >{toCommas(record.amountPaid)}</h3></td>
+                                <td>{record.paymentMethod}</td>
+                                <td>{record.note}</td>
+                            </tr>
+
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </section>
            
         </div>
     )
