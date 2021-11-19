@@ -14,6 +14,7 @@ import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -128,8 +129,7 @@ const Header = () => {
               <Paper elevation={3}>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown} >
-                    <MenuItem onClick={handleClose}>{(user?.result?.name).split(" ")[0]}</MenuItem>
-                    <MenuItem onClick={() => openLink('settings') }>Profile</MenuItem>
+                    <MenuItem onClick={() => openLink('settings') }>{(user?.result?.name).split(" ")[0]}</MenuItem>
                     <MenuItem onClick={()=> logout()} >Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>

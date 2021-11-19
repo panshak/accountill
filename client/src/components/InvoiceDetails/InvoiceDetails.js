@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import "../../../node_modules/react-progress-button/react-progress-button.css"
+// import "../../../node_modules/react-progress-button/react-progress-button.css"
 import { useSnackbar } from 'react-simple-snackbar'
 import { useLocation, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
