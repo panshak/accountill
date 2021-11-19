@@ -17,6 +17,7 @@ Built with the MERN stack (MongoDB, Express, React and NodeJS).
 
 ## Introduction
 This is a side project I've been working on. A full stack invoicing application made using the MERN stack (MongoDB, Express, React & Nodejs), specially designed for freelancers and small businesses, but can be used for almost any type of business need. With this application, you can send beautiful invoices, receipts, estimates, quotes, bills etc to your clients. Jump right off the [Live App](https://arcinvoice.com/) and start sending invoice or download the entire [Source code](https://github.com/Panshak/arcinvoice) and run it on your server. This project is something I've been working on in my free time so I cannot be sure that everything will work out correctly. But I'll appreciate you if can report any issue.
+
 ![Invoice Dashboard](https://res.cloudinary.com/almpo/image/upload/v1637314504/invoice/dashboard_c5z0is.png)
 
 ## Key Features
@@ -132,7 +133,7 @@ to keep improving the project.
 - Twitter: [@panshak_](https://twitter.com/panshak_)
 - Github: [@panshak](https://github.com/panshak)
 - Linkedin: [@panshak](https://www.linkedin.com/in/panshak/)
-- Email: [Email](mailto:ipanshak@gmail.com)
+- Email: [@ipanshak](mailto:ipanshak@gmail.com)
 
 ## License
 
