@@ -169,6 +169,16 @@ const Invoices = () => {
     history.push('/login')
   }
 
+
+
+  function checkStatus(status) {
+    return status === "Partial" ? {border: 'solid 0px #1976d2', backgroundColor: '#baddff', padding: '8px 18px', borderRadius: '20px' }
+        : status === "Paid" ? {border: 'solid 0px green', backgroundColor: '#a5ffcd', padding: '8px 18px', borderRadius: '20px' }
+        : status === "Unpaid" ? {border: 'solid 0px red', backgroundColor: '#ffaa91', padding: '8px 18px', borderRadius: '20px' }
+        : "red";
+          
+}
+
   if(isLoading) {
     return  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', paddingTop: '20px'}}>
         <Spinner />
@@ -211,7 +221,7 @@ const Invoices = () => {
                 <TableCell  style={tableStyle} onClick={() => openInvoice(row._id)} > {row.client.name} </TableCell>
                 <TableCell style={tableStyle} onClick={() => openInvoice(row._id)} >{row.currency} {row.total? toCommas(row.total): row.total} </TableCell>
                 <TableCell style={tableStyle} onClick={() => openInvoice(row._id)} > {moment(row.dueDate).fromNow()} </TableCell>
-                <TableCell style={tableStyle} onClick={() => openInvoice(row._id)} > {row.status}</TableCell>
+                <TableCell style={tableStyle} onClick={() => openInvoice(row._id)} > <button style={checkStatus(row.status)}>{row.status}</button></TableCell>
              
                 <TableCell style={{...tableStyle, width: '10px'}}>
                   <IconButton onClick={() => editInvoice(row._id)}>
