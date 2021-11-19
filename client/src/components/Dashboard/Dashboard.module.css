@@ -2,6 +2,7 @@
   /* padding-left: 150px; */
   background-color: #EEEEEE;
   padding-bottom: 96px;
+  padding-left: 30px;
   min-height: 85%;
   min-height: -webkit-calc(100% - 186px);
   min-height: -moz-calc(100% - 186px);
@@ -29,7 +30,7 @@
     */
     .autoGrid {
       --auto-grid-min-size: 14rem;
-      width: 85%;
+      width: 90%;
       margin: 10px auto;
       display: grid;
       grid-template-columns: repeat(
@@ -179,7 +180,7 @@
 
 
     .table {
-      width: 85%;
+      width: 90%;
       margin: 0 auto;
       overflow-x:auto
 
@@ -215,6 +216,10 @@
 
   
     @media all and (max-width: 768px) {
+
+      .pageContainer {
+        padding-left: 0px;
+      }
 
       .table {
         width: 95%;

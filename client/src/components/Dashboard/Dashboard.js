@@ -178,23 +178,11 @@ const Dashboard = () => {
 
             </section>
 
+            {paymentHistory.length !== 0 && (
             <section>
                 <Chart paymentHistory={paymentHistory} />
             </section>
-            {/* <section>
-                <ReactChart paymentHistory={paymentHistory} />
-            </section> */}
-
-            {/* <section className={styles.donutAndRecentPayment}>
-                <div className={styles.recentPayment}>
-                   
-                </div>
-                <div className={styles.donut}>
-                    <Donut unpaid={unpaidInvoice} paid={paid} partial={partial} />
-                </div>
-
-            </section> */}
-
+            )}
 
                 <section>
                 <h1 style={{textAlign: 'center', padding: '30px' }}>{paymentHistory.length ? 'Recent Payments' : 'No payment received yet'}</h1>

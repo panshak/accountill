@@ -1,6 +1,7 @@
 ### [arcinvoice.com](https://arcinvoice.com/)
 # MERN Stack Invoicing Application
 Built with MERN stack (MongoDB, Express, React and NodeJS).
+![Invoice](https://res.cloudinary.com/almpo/image/upload/v1637241441/special/banner_izy4xm.png)
 
   * [Introduction](#introduction)
   * [Key Features](#key-features)
@@ -15,7 +16,7 @@ Built with MERN stack (MongoDB, Express, React and NodeJS).
   * [License](#license)
 
 ## Introduction
-I have looked around for a fullstack invoicing application made with the MERN Stack but couldn't find one that is 'serious', free and open source, so I decided to build one myself. For starters, this in my opinion is the most simplest yet effective invoicing application out there, specially designed for freelancers and small businesses, but can be used for almost any type of business need. With this application, you can send beautiful invoices, receipts, estimates, quotes, bills etc to your clients. Jump right off the [Live App](https://arcinvoice.com/) and start sending invoice or download the entire [Source code](https://github.com/Panshak/arcinvoice) and run it on your server. This project is something I've been working on in my free time so I cannot be sure that everything will work out correctly. But I'll appreciate you can report any issue.
+This is a side project I've been working on. A full stack invocing application made using the MERN stack (MongoDB, Express, React & Nodejs), specially designed for freelancers and small businesses, but can be used for almost any type of business need. With this application, you can send beautiful invoices, receipts, estimates, quotes, bills etc to your clients. Jump right off the [Live App](https://arcinvoice.com/) and start sending invoice or download the entire [Source code](https://github.com/Panshak/arcinvoice) and run it on your server. This project is something I've been working on in my free time so I cannot be sure that everything will work out correctly. But I'll appreciate you if can report any issue.
 
 ## Key Features
 - Send invoices, receipts, estimates, quotations and bills via email
@@ -114,15 +115,18 @@ $ npm link html-pdf
 $ npm link phantomjs-prebuilt
 ```
 
-## Appreciation
-Special thanks to [Javascript Mastery](https://github.com/adrianhajdin), whose teachings has brought me thus far.
+
+## Comment
+I intend to keep adding more features to this application, so if you like it, please give it a star, that will encourage me to 
+to keep improving the project.
+
 
 ## Author
 
 - Twitter: [@panshak_](https://twitter.com/panshak_)
 - Github: [@panshak](https://github.com/panshak)
 - Linkedin: [@panshak](https://www.linkedin.com/in/panshak/)
-- Email: [ipanshak@gmail.com](mailto:ipanshak@gmail.com)
+- Email: [Email](mailto:ipanshak@gmail.com)
 
 ## License
 

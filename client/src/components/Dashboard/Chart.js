@@ -3,8 +3,6 @@ import ReactApexChart from "react-apexcharts";
 
 function Chart({ paymentHistory }) {
 
-  
-
 
     let paymentDates = []
     for(let i = 0; i < paymentHistory.length; i++) {
@@ -56,20 +54,11 @@ function Chart({ paymentHistory }) {
       style={{
         backgroundColor: "white",
         textAlign: "center",
-        width: '85%',
+        width: '90%',
         margin: '10px auto',
         padding: '10px'
       }}
     >
-      {/* <br />
-      <h2>Payment history</h2>
-      <br /> */}
-      {/* <ReactApexChart
-        options={options}
-        series={series}
-        type="area"
-        height={300}
-      /> */}
       <br />
       <ReactApexChart
         options={options}
