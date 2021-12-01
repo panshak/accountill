@@ -7,7 +7,7 @@ import Invoices from './components/Invoices/Invoices';
 import InvoiceDetails from './components/InvoiceDetails/InvoiceDetails'
 import ClientList from './components/Clients/ClientList'
 import NavBar from './components/NavBar/NavBar';
-import Login from './components/Login/Login'
+import Auth from './components/Auth'
 import Dashboard from './components/Dashboard/Dashboard';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -31,7 +31,7 @@ function App() {
           <Route path="/edit/invoice/:id" exact component={Invoice} />
           <Route path="/invoice/:id" exact component={InvoiceDetails} />
           <Route path="/invoices" exact component={Invoices} />
-          <Route path="/login" exact component={Login} />
+          <Route path={['/signup', '/login']} exact component={Auth} />
           <Route path="/settings" exact component={Settings} />
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/customers" exact component={ClientList} />
