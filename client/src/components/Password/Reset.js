@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Paper, Typography, Container, Grid } from '@material-ui/core';
 import useStyles from './styles';
-import Field from '../Login/Field';
+import Field from '../Auth/Field';
 import { useParams, useHistory } from 'react-router-dom'
 
 import { reset } from '../../actions/auth';

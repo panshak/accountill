@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { Button, Paper, Typography, Container, Grid } from '@material-ui/core';
 import useStyles from './styles';
-import Field from '../Login/Field';
+import Field from '../Auth/Field';
 import { forgot } from '../../actions/auth';
 import styles from './Password.module.css'
 

@@ -1,26 +1,3 @@
-// import React from 'react'
-// import styles from './Login.module.css'
-
-// const Field = ({ name, placeholder, type, handleChange }) => {
-
-//     return (
-//         <div>
-//             <input 
-//                 className={styles.inputField} 
-//                 type={type}
-//                 name={name}
-//                 placeholder={placeholder}
-//                 onChange={handleChange} 
-//                 required = {true}
-//             />
-//         </div>
-//     )
-// }
-
-// export default Field
-
-
-
 import React from 'react';
 import { TextField, Grid, InputAdornment, IconButton } from '@material-ui/core';
 
