@@ -1,8 +1,9 @@
 import React from "react";
 import { Container } from "@material-ui/core";
 import { Switch, Route, useHistory } from "react-router-dom";
-import SignupForm from "./signup-form";
-import LoginForm from "./login-form";
+import AuthForm from "./auth-form";
+import { useDispatch } from "react-redux";
+import { signin, signup } from "../../actions/auth";
 
 const Auth = () => {
   const history = useHistory();
@@ -13,11 +14,17 @@ const Auth = () => {
     history.push("/dashboard");
   }
 
+  const dispatch = useDispatch();
+
   return (
     <Container component="main" maxWidth="xs">
       <Switch>
-        <Route path="/login" component={LoginForm} />
-        <Route path="/signup" component={SignupForm} />
+        <Route path="/login">
+          <AuthForm onSubmit={() => dispatch(signin())} />
+        </Route>
+        <Route path="/signup">
+          <AuthForm isSignup onSubmit={() => dispatch(signup())} />
+        </Route>
       </Switch>
     </Container>
   );

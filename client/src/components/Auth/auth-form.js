@@ -136,7 +136,7 @@ const AuthForm = ({ isSignup = false, onSubmit }) => {
                 type="submit"
                 className={styles.submitBtn}
               >
-                {isSignup ? "Sign In" : "Sign Up"}
+                {isSignup ? "Sign Up" : "Sign In"}
               </button>
             )}
           </div>
