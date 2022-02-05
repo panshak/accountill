@@ -35,6 +35,8 @@ import { createInvoice, getInvoice, updateInvoice } from '../../actions/invoiceA
 import { getClientsByUser } from '../../actions/clientActions'
 import AddClient from './AddClient';
 import InvoiceType from './InvoiceType';
+import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 // import SelectType from './SelectType'
 
 const useStyles = makeStyles((theme) => ({
@@ -62,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Invoice = () => {
 
+    const location = useLocation()
     const [invoiceData, setInvoiceData] = useState(initialState)
     const [ rates, setRates] = useState(0)
     const [vat, setVat] = useState(0)
@@ -79,6 +82,24 @@ const Invoice = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = JSON.parse(localStorage.getItem('profile'))
+
+
+    useEffect(() => {
+        getUser()
+         // eslint-disable-next-line
+    },[location])
+
+
+    const getUser = async() => {
+        try {
+          const response = await axios.get(`${process.env.REACT_APP_API}/invoices/count?searchQuery=${user?.result?._id}`);
+        //   console.log(response.data);
+        setInvoiceData({...invoiceData, invoiceNumber: (response?.data)})
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
 
 
     useEffect(() => {
@@ -214,6 +235,11 @@ const Invoice = () => {
             rates: rates, 
             currency: currency, 
             dueDate: selectedDate, 
+            invoiceNumber: `${
+                invoiceData.invoiceNumber < 100 ? 
+                (Number(invoiceData.invoiceNumber) + 1).toString().padStart(3, '0') 
+                : Number(invoiceData.invoiceNumber) + 1 
+            }`,
             client, 
             type: type, 
             status: status, 
@@ -250,12 +276,12 @@ const Invoice = () => {
                         {/* <Avatar alt="Logo" variant='square' src="" className={classes.large} /> */}
                     </Grid>
                     <Grid item>
-                        {/* <div style={{paddingTop: '20px'}}>
-                            <SelectType  type={type} setType={setType} />
-                        </div> */}
                         <InvoiceType type={type} setType={setType} />
-                        <Typography variant="overline" style={{color: 'gray'}} >Invoice#: </Typography>
-                        <InputBase defaultValue={invoiceData.invoiceNumber}/>
+                        <p style={{color: 'gray'}}> Invoice#:
+                            <span 
+                            style={{paddingLeft: '20px', paddingRight: '20px'}}
+                            contentEditable
+                        onInput={e => setInvoiceData({...invoiceData, invoiceNumber: e.currentTarget.textContent})}>{invoice ? invoiceData.invoiceNumber : (Number(invoiceData.invoiceNumber) + 1).toString().padStart(3, '0')}</span></p>
                     </Grid>
                 </Grid >
             </Container>

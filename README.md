@@ -11,7 +11,6 @@ Built with the MERN stack (MongoDB, Express, React and NodeJS).
       - [Database](#database)
   * [Configuration and Setup](#configuration-and-setup)
   * [Troubleshooting](#troubleshooting)
-  * [Appreciation](#appreciation)
   * [Author](#author)
   * [License](#license)
 

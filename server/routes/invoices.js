@@ -1,10 +1,10 @@
 import express from 'express'
-import { getInvoices, createInvoice, updateInvoice, deleteInvoice, getInvoice, getInvoicesByUser } from '../controllers/invoices.js'
+import {createInvoice, updateInvoice, deleteInvoice, getInvoice, getInvoicesByUser, getTotalCount } from '../controllers/invoices.js'
 
 const router = express.Router()
 
+router.get('/count', getTotalCount) //use to generate invoice serial number
 router.get('/:id', getInvoice)
-// router.get('/creator', getInvoicesByUser);
 router.get('/', getInvoicesByUser)
 router.post('/', createInvoice)
 router.patch('/:id', updateInvoice)

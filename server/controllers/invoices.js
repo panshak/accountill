@@ -1,3 +1,9 @@
+// Copyright: Panshak Solomon
+// A.P. Leventis Ornithological Research Institute.
+// University of Jos Biological Conservatory
+// All right reserved
+// ©2022 and beyond
+
 import express from 'express'
 import mongoose from 'mongoose'
 
@@ -16,6 +22,21 @@ export const getInvoicesByUser = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 }
+
+
+export const getTotalCount = async (req, res) => {
+    const {searchQuery} = req.query;
+
+    try {
+        // const invoices = await InvoiceModel.find({ creator: searchQuery });
+        const totalCount = await InvoiceModel.countDocuments({ creator: searchQuery });
+
+        res.status(200).json(totalCount);
+    } catch (error) {    
+        res.status(404).json({ message: error.message });
+    }
+}
+
 
 
 export const getInvoices = async (req, res) => {

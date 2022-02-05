@@ -14,6 +14,12 @@ const __dirname = dirname(__filename);
 import invoiceRoutes from './routes/invoices.js'
 import clientRoutes from './routes/clients.js'
 import userRoutes from './routes/userRoutes.js'
+// Copyright: Panshak Solomon
+// A.P. Leventis Ornithological Research Institute.
+// University of Jos Biological Conservatory
+// All right reserved
+// ©2022 and beyond
+
 import profile from './routes/profile.js'
 import pdfTemplate from './documents/index.js'
 // import invoiceTemplate from './documents/invoice.js'
@@ -55,7 +61,7 @@ app.post('/send-pdf', (req, res) => {
        
           // send mail with defined transport object
         transporter.sendMail({
-            from: `${company.businessName ? company.businessName : company.name} <hello@arcinvoice.com>`, // sender address
+            from: ` Arc Invoice <hello@arcinvoice.com>`, // sender address
             to: `${email}`, // list of receivers
             replyTo: `${company.email}`,
             subject: `Invoice from ${company.businessName ? company.businessName : company.name}`, // Subject line
