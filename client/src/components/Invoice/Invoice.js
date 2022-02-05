@@ -85,12 +85,12 @@ const Invoice = () => {
 
 
     useEffect(() => {
-        getUser()
+        getTotalCount()
          // eslint-disable-next-line
     },[location])
 
 
-    const getUser = async() => {
+    const getTotalCount = async() => {
         try {
           const response = await axios.get(`${process.env.REACT_APP_API}/invoices/count?searchQuery=${user?.result?._id}`);
         //   console.log(response.data);
