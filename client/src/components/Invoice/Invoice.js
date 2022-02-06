@@ -94,11 +94,12 @@ const Invoice = () => {
         try {
           const response = await axios.get(`${process.env.REACT_APP_API}/invoices/count?searchQuery=${user?.result?._id}`);
         //   console.log(response.data);
-        setInvoiceData({...invoiceData, invoiceNumber: (response?.data)})
+        setInvoiceData({...invoiceData, invoiceNumber: (Number(response.data) + 1).toString().padStart(3, '0')})
         } catch (error) {
           console.error(error);
         }
       }
+      
 
 
 
@@ -237,8 +238,8 @@ const Invoice = () => {
             dueDate: selectedDate, 
             invoiceNumber: `${
                 invoiceData.invoiceNumber < 100 ? 
-                (Number(invoiceData.invoiceNumber) + 1).toString().padStart(3, '0') 
-                : Number(invoiceData.invoiceNumber) + 1 
+                (Number(invoiceData.invoiceNumber)).toString().padStart(3, '0') 
+                : Number(invoiceData.invoiceNumber)
             }`,
             client, 
             type: type, 
@@ -277,11 +278,27 @@ const Invoice = () => {
                     </Grid>
                     <Grid item>
                         <InvoiceType type={type} setType={setType} />
-                        <p style={{color: 'gray'}}> Invoice#:
-                            <span 
-                            style={{paddingLeft: '20px', paddingRight: '20px'}}
-                            contentEditable
-                        onInput={e => setInvoiceData({...invoiceData, invoiceNumber: e.currentTarget.textContent})}>{invoice ? invoiceData.invoiceNumber : (Number(invoiceData.invoiceNumber) + 1).toString().padStart(3, '0')}</span></p>
+                        Invoice #:
+                        <div style={{
+                            marginTop: '15px',
+                            width: '100px',
+                            padding: '8px',
+                            display: 'inline-block',
+                            backgroundColor: '#f4f4f4',
+                            outline: '0px solid transparent'
+                        }} 
+                            contenteditable="true"
+                            onInput={e => setInvoiceData({
+                            ...invoiceData, invoiceNumber: e.currentTarget.textContent})
+                            }
+                        >
+                        <span style={{width:'40px',
+                            color: 'black',
+                            padding: '15px',
+                        }} 
+                            contenteditable="false"> {invoiceData.invoiceNumber}</span>
+                        <br/>
+                        </div>
                     </Grid>
                 </Grid >
             </Container>

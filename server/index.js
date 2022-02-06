@@ -1,3 +1,6 @@
+
+//Copyright (c) 2022 Panshak Solomon
+
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
@@ -14,11 +17,6 @@ const __dirname = dirname(__filename);
 import invoiceRoutes from './routes/invoices.js'
 import clientRoutes from './routes/clients.js'
 import userRoutes from './routes/userRoutes.js'
-// Copyright: Panshak Solomon
-// A.P. Leventis Ornithological Research Institute.
-// University of Jos Biological Conservatory
-// All right reserved
-// ©2022 and beyond
 
 import profile from './routes/profile.js'
 import pdfTemplate from './documents/index.js'

@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+import axios from 'axios'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,17 @@ const Header = () => {
         setUser(JSON.parse(localStorage.getItem('profile')))
     },[location])
 
+
+
+    useEffect(() => {
+      getMetaData()
+    },[])
+
+
+    const getMetaData = async() => {
+      const response = await axios.get('https://api.github.com/repos/panshak/arc')
+          console.log(response.data);
+    }
 
     const logout =() => {
         dispatch({ type: 'LOGOUT' })

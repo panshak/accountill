@@ -1,8 +1,4 @@
-// Copyright: Panshak Solomon
-// A.P. Leventis Ornithological Research Institute.
-// University of Jos Biological Conservatory
-// All right reserved
-// ©2022 and beyond
+//Copyright (c) 2022 Panshak Solomon
 
 import React from 'react';
 import ReactDOM from 'react-dom';

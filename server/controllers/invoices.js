@@ -1,21 +1,16 @@
-// Copyright: Panshak Solomon
-// A.P. Leventis Ornithological Research Institute.
-// University of Jos Biological Conservatory
-// All right reserved
-// ©2022 and beyond
+
+//Copyright (c) 2022 Panshak Solomon
 
 import express from 'express'
 import mongoose from 'mongoose'
 
 import InvoiceModel from '../models/InvoiceModel.js'
 
-
 export const getInvoicesByUser = async (req, res) => {
     const {searchQuery} = req.query;
 
     try {
         const invoices = await InvoiceModel.find({ creator: searchQuery });
-        // const invoices = await InvoiceModel.find().where('creator').in(searchQuery);
 
         res.status(200).json({ data: invoices });
     } catch (error) {    
@@ -38,12 +33,10 @@ export const getTotalCount = async (req, res) => {
 }
 
 
-
 export const getInvoices = async (req, res) => {
 
     try {
         const allInvoices = await InvoiceModel.find({}).sort({_id:-1}) 
-        //find({}).sort({_id:-1}) to sort according to date of creation
 
         res.status(200).json(allInvoices)
 
