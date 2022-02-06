@@ -5,8 +5,10 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(0),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'left',
     padding: theme.spacing(2),
+    border: 'solid 1px #bcbcbc'
+    // backgroundColor: '#EEEEEE'
   },
   root: {
     '& .MuiTextField-root': {

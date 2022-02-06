@@ -81,6 +81,25 @@
     color: white;
   }
 
+  .loginBtn {
+    border: 1px solid #0070f3;
+    padding: 15px 30px;
+    border-radius: 50px;
+    background-color: white;
+    color: rgb(24, 24, 24);
+    cursor: pointer;
+    font-size: 15px;
+    outline: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .loginBtn:hover {
+    background-color:  #0070f3;
+    color: white;
+  }
+
+
+
   .switchBtn {
     border-radius: 4px;
     padding: 10px;

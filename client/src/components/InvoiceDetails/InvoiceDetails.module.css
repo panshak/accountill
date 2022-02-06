@@ -311,12 +311,11 @@ input::-webkit-inner-spin-button {
   text-align: left;
 }
 .note {
-  margin-top: 20px;
+  margin: 50px 20px;
+  text-align: left;
+  border-top: solid 1px #b7b7b7;
 }
 
-.note h4 {
-  text-align: left;
-}
 
 .toolBar {
   display: flex;

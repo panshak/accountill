@@ -1,8 +1,6 @@
 .pageContainer {
-  /* padding-left: 150px; */
   background-color: #EEEEEE;
   padding-bottom: 96px;
-  
   min-height: 70%;
   min-height: -webkit-calc(100% - 186px);
   min-height: -moz-calc(100% - 186px);
@@ -12,7 +10,7 @@
 .hero {
   width: 50%;
   margin: 0px auto;
-  padding: 50px;
+  padding: 30px 50px;
   line-height: 60px;
 }
 

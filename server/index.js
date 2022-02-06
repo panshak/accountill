@@ -6,7 +6,6 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import nodemailer from 'nodemailer'
-
 import pdf from 'html-pdf'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';

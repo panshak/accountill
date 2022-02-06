@@ -9,9 +9,9 @@ import { signup, signin } from '../../actions/auth'
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { createProfile } from '../../actions/profile'
-// import Google from './Google'
+import Google from './Google'
 import { useSnackbar } from 'react-simple-snackbar'
-import ProgressButton from 'react-progress-button'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
@@ -28,6 +28,7 @@ const Login = () => {
      // eslint-disable-next-line 
     const [openSnackbar, closeSnackbar] = useSnackbar()
     const user = JSON.parse(localStorage.getItem('profile'))
+    const [loading, setLoading] = useState(false)
     
     const handleShowPassword = () => setShowPassword(!showPassword);
     const handleChange =(e)=> {
@@ -37,10 +38,11 @@ const Login = () => {
     const handleSubmit =(e) => {
         e.preventDefault()
         if(isSignup) {
-            dispatch(signup(formData, openSnackbar))
+            dispatch(signup(formData, openSnackbar, setLoading))
         } else {
-            dispatch(signin(formData, openSnackbar))
+            dispatch(signin(formData, openSnackbar, setLoading))
         }
+        setLoading(true)
     }
 
 
@@ -95,13 +97,18 @@ const Login = () => {
           <div className={styles.buttons}>
                <div>
                     {/* <button className={styles.submitBtn}> { isSignup ? 'Sign Up' : 'Sign In' }</button> */}
-                    <ProgressButton>{ isSignup ? 'Sign Up' : 'Sign In' }</ProgressButton>
+                    {/* <ProgressButton>{ isSignup ? 'Sign Up' : 'Sign In' }</ProgressButton> */}
+                    {loading ? <CircularProgress /> 
+                    : 
+                    <button className={styles.loginBtn} >{ isSignup ? 'Sign Up' : 'Sign In' }</button>
+                    }
+                    
                 </div>
                 <div> 
                     <GoogleLogin
                     clientId = {process.env.REACT_APP_GOOGLE_CLIENT_ID}
                     render={(renderProps) => (
-                        <button className={styles.googleBtn} onClick={renderProps.onClick} disabled={renderProps.disabled} >Google</button>
+                        <button className={styles.googleBtn} onClick={renderProps.onClick} disabled={renderProps.disabled} ><Google /> Google</button>
                     )}
                     onSuccess={googleSuccess}
                     onFailure={googleError}

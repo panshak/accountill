@@ -362,8 +362,8 @@ if(!invoice) {
                 </div>
 
                 <div className={styles.note}>
-                    <h4>Notes/Terms</h4>
-                    <Typography>{invoiceData.notes}</Typography>
+                    <h4>Note/Payment Details</h4>
+                    <p>{invoiceData.notes}</p>
                 </div>
 
             {/* <button className={styles.submitButton} type="submit">Save and continue</button> */}

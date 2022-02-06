@@ -9,6 +9,8 @@ import Uploader from './Uploader';
 import { getProfilesByUser, updateProfile } from '../../../actions/profile';
 import useStyles from './styles';
 import Input from './Input';
+import ProfileDetail from './Profile';
+
 
 
 
@@ -21,7 +23,8 @@ const Settings = () => {
   phoneNumber: '',
   businessName: '',
   contactAddress: '', 
-  logo: ''
+  logo: '',
+  paymentDetails: ''
 };
 
   const [form, setForm] = useState(initialState);
@@ -45,9 +48,9 @@ const Settings = () => {
     dispatch(getProfilesByUser({ search: user?.result?._id || user?.result.googleId}))
   },[location, switchEdit])
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-      dispatch(updateProfile(profiles?._id, form, openSnackbar));
+      await dispatch(updateProfile(profiles?._id, form, openSnackbar));
       setSwitchEdit(0)
 
   };
@@ -56,19 +59,15 @@ const Settings = () => {
 
   return (
     <div>
-     {switchEdit === 0 && (
-       <Container component="main" maxWidth="sm">
-       <Paper className={classes.paper} elevation={2} >
-       <Avatar style={{width: '100px', height: '100px', margin: '30px'}} src={profiles?.logo} alt="" className={classes.avatar}>
-         </Avatar>
-         <p>{profiles?.businessName}</p>
-         <p>{profiles?.contactAddress}</p>
-         <p>{profiles?.phoneNumber}</p>
-         <p>{profiles?.email}</p>
-         <Button variant="outlined" style={{margin: '30px', padding: '15px 30px'}} onClick={() => setSwitchEdit(1)}>Edit Profile</Button>
+
+      {switchEdit === 0 && (
+        <Container component="main" maxWidth="sm">
+        <Paper className={classes.paper} elevation={0} >
+        <ProfileDetail  profiles={profiles} />
+        <Button variant="outlined" style={{margin: '30px', padding: '15px 30px'}} onClick={() => setSwitchEdit(1)}>Edit Profile</Button>
        </Paper>
        </Container>
-     )}
+      )}
 
     {switchEdit === 1 && (
       <Container component="main" maxWidth="sm">
@@ -82,6 +81,7 @@ const Settings = () => {
             <Input name="phoneNumber" label="Phone Number" handleChange={handleChange} type="text" half value={form?.phoneNumber}/>
             <Input name="businessName" label="Business Name" handleChange={handleChange} type="text" value={form?.businessName}/>
             <Input name="contactAddress" label="Contact Address" handleChange={handleChange} type="text" value={form?.contactAddress} />
+            <Input name="paymentDetails" label="Payment Details/Notes" handleChange={handleChange} type="text" multiline rows="4" value={form?.paymentDetails} />
           </Grid>
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
            Update Settings

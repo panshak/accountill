@@ -37,6 +37,7 @@ import AddClient from './AddClient';
 import InvoiceType from './InvoiceType';
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
+import { getProfilesByUser } from '../../actions/profile'
 // import SelectType from './SelectType'
 
 const useStyles = makeStyles((theme) => ({
@@ -82,13 +83,18 @@ const Invoice = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = JSON.parse(localStorage.getItem('profile'))
+    const { profiles } = useSelector((state) => state.profiles)
+
 
 
     useEffect(() => {
         getTotalCount()
+        dispatch(getProfilesByUser({ search: user?.result?._id || user?.result.googleId}))
+            // setInvoiceData({...invoiceData, notes: profiles?.paymentDetails})
          // eslint-disable-next-line
     },[location])
 
+console.log(profiles.paymentDetails)
 
     const getTotalCount = async() => {
         try {
@@ -155,7 +161,7 @@ const Invoice = () => {
     setInvoiceData((prevState) => ({...prevState, tax: e.target.value}))
   }
 
-    // console.log(invoiceData)
+    console.log(invoiceData)
     // Change handler for dynamically added input field
     const handleChange =(index, e) => {
         const values = [...invoiceData.items]
@@ -472,11 +478,12 @@ const Invoice = () => {
             </Container>
         </div>
             <div className={styles.note}>
-                <h4>Notes/Terms</h4>
+                <h4>Note/Payment Details</h4>
                 <textarea 
+                style={{border: 'solid 1px #d6d6d6', padding: '10px'}}
                     placeholder="Provide additional details or terms of service"
                     onChange={(e) => setInvoiceData({...invoiceData, notes: e.target.value})}
-                    value={invoiceData.notes}
+                    defaultValue={invoice? invoice.notes: profiles?.paymentDetails}
                 />
             </div>
 
