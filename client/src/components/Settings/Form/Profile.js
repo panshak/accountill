@@ -8,6 +8,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneInTalkIcon from '@material-ui/icons/PhoneInTalk';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import AccountBalanceWalletRoundedIcon from '@material-ui/icons/AccountBalanceWalletRounded';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,38 +16,52 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 450,
     // backgroundColor: "#EEEEEE",
   },
+  large: {
+    width: theme.spacing(12),
+    height: theme.spacing(12),
+  },
 }));
 
 export default function ProfileDetail({ profiles }) {
   const classes = useStyles();
 
   return (
-    <List className={classes.root}>
-      <ListItem >
-            <BusinessCenterIcon style={{marginRight: '20px', color: 'gray'}} />
-        <ListItemText primary={profiles?.businessName} secondary="" />
-      </ListItem>
+    <>
+    <div style={{display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    borderBottom: 'solid 1px #dddddd',
+    paddingBottom: '20px'
+    }}>
+      <Avatar alt={profiles?.businessName} src={profiles.logo} className={classes.large} />
+    </div>
+        <List className={classes.root}>
+          <ListItem >
+                <BusinessCenterIcon style={{marginRight: '20px', color: 'gray'}} />
+            <ListItemText primary={profiles?.businessName} secondary="" />
+          </ListItem>
 
-      <ListItem >
-        <LocationOnIcon style={{marginRight: '20px', color: 'gray'}} />
-        <ListItemText primary={profiles?.contactAddress} secondary="" />
-      </ListItem>
+          <ListItem >
+            <LocationOnIcon style={{marginRight: '20px', color: 'gray'}} />
+            <ListItemText primary={profiles?.contactAddress} secondary="" />
+          </ListItem>
 
-      <ListItem >
-        <PhoneInTalkIcon style={{marginRight: '20px', color: 'gray'}} />
-        <ListItemText primary={profiles?.phoneNumber} secondary="" />
-      </ListItem>
+          <ListItem >
+            <PhoneInTalkIcon style={{marginRight: '20px', color: 'gray'}} />
+            <ListItemText primary={profiles?.phoneNumber} secondary="" />
+          </ListItem>
 
-      <ListItem >
-        <AlternateEmailIcon style={{marginRight: '20px', color: 'gray'}} />
-        <ListItemText primary={profiles?.email} secondary="" />
-      </ListItem>
+          <ListItem >
+            <AlternateEmailIcon style={{marginRight: '20px', color: 'gray'}} />
+            <ListItemText primary={profiles?.email} secondary="" />
+          </ListItem>
 
-      <ListItem >
-        <AccountBalanceWalletRoundedIcon style={{marginRight: '20px', color: 'gray'}} />
-        <ListItemText primary={profiles?.paymentDetails} secondary="" />
-      </ListItem>
+          <ListItem >
+            <AccountBalanceWalletRoundedIcon style={{marginRight: '20px', color: 'gray'}} />
+            <ListItemText primary={profiles?.paymentDetails} secondary="" />
+          </ListItem>
 
-    </List>
+        </List>
+    </>
   );
 }

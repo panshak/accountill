@@ -76,8 +76,14 @@ const Settings = () => {
     {switchEdit === 1 && (
       <Container component="main" maxWidth="sm">
       <Paper className={classes.paper} elevation={1} >
-      <Avatar style={{width: '100px', height: '100px'}} src={profiles?.logo} alt="" className={classes.avatar}>
-         </Avatar>
+      <div style={{display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        borderBottom: 'solid 1px #dddddd',
+        paddingBottom: '20px'
+        }}>
+        <Avatar style={{width: '100px', height: '100px'}} src={profiles?.logo} alt="" className={classes.avatar} />
+      </div>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Uploader form={form} setForm={setForm} />
