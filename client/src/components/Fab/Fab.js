@@ -29,6 +29,7 @@ const FabButton = () => {
             {location.pathname !== '/invoice' && (
               <Action
                   text="New Invoice"
+                  // onClick={() =>  history.push(`/invoice`)}
                   onClick={() => window.location.href='/invoice'}
                 >
                   <CreateIcon />

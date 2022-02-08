@@ -28,7 +28,6 @@ import Divider from '@material-ui/core/Divider';
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
-
 import {initialState} from '../../initialState'
 import currencies from '../../currencies.json'
 import { createInvoice, getInvoice, updateInvoice } from '../../actions/invoiceActions';
@@ -37,8 +36,6 @@ import AddClient from './AddClient';
 import InvoiceType from './InvoiceType';
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
-import { getProfilesByUser } from '../../actions/profile'
-// import SelectType from './SelectType'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -75,7 +72,7 @@ const Invoice = () => {
     const today = new Date();
     const [selectedDate, setSelectedDate] = useState(today.getTime() + 7 * 24 * 60 * 60 * 1000);
     const [ client, setClient] = useState(null)
-    const [type, setType] = React.useState('Invoice')
+    const [type, setType] = useState('Invoice')
     const [status, setStatus ] = useState('')
     const { id } = useParams()
     const clients = useSelector((state) => state.clients.clients)
@@ -83,23 +80,19 @@ const Invoice = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const user = JSON.parse(localStorage.getItem('profile'))
-    const { profiles } = useSelector((state) => state.profiles)
-
 
 
     useEffect(() => {
         getTotalCount()
-        dispatch(getProfilesByUser({ search: user?.result?._id || user?.result.googleId}))
-            // setInvoiceData({...invoiceData, notes: profiles?.paymentDetails})
          // eslint-disable-next-line
     },[location])
 
-console.log(profiles.paymentDetails)
 
     const getTotalCount = async() => {
         try {
           const response = await axios.get(`${process.env.REACT_APP_API}/invoices/count?searchQuery=${user?.result?._id}`);
         //   console.log(response.data);
+        //Get total count of invoice from the server and increment by one to serialized numbering of invoice
         setInvoiceData({...invoiceData, invoiceNumber: (Number(response.data) + 1).toString().padStart(3, '0')})
         } catch (error) {
           console.error(error);
@@ -119,7 +112,7 @@ console.log(profiles.paymentDetails)
         // eslint-disable-next-line
     }, [dispatch]);
 
-    
+
     useEffect(() => {
         if(invoice) {
             //Automatically set the default invoice values as the ones in the invoice to be updated
@@ -161,7 +154,7 @@ console.log(profiles.paymentDetails)
     setInvoiceData((prevState) => ({...prevState, tax: e.target.value}))
   }
 
-    console.log(invoiceData)
+    // console.log(invoiceData)
     // Change handler for dynamically added input field
     const handleChange =(index, e) => {
         const values = [...invoiceData.items]
@@ -216,6 +209,9 @@ console.log(profiles.paymentDetails)
         // console.log(values)
     }
     
+
+    console.log(invoiceData)
+
     const handleSubmit =  async (e ) => {
         e.preventDefault()
         if(invoice) {
@@ -478,12 +474,12 @@ console.log(profiles.paymentDetails)
             </Container>
         </div>
             <div className={styles.note}>
-                <h4>Note/Payment Details</h4>
+                <h4>Note/Payment Info</h4>
                 <textarea 
                 style={{border: 'solid 1px #d6d6d6', padding: '10px'}}
                     placeholder="Provide additional details or terms of service"
                     onChange={(e) => setInvoiceData({...invoiceData, notes: e.target.value})}
-                    defaultValue={invoice? invoice.notes: profiles?.paymentDetails}
+                    value={invoiceData.notes}
                 />
             </div>
 

@@ -7,11 +7,11 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import nodemailer from 'nodemailer'
 import pdf from 'html-pdf'
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 import invoiceRoutes from './routes/invoices.js'
 import clientRoutes from './routes/clients.js'
@@ -112,3 +112,4 @@ mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true})
 
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
+

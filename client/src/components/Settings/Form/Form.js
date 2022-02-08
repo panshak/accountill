@@ -32,6 +32,7 @@ const Settings = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const { profiles } = useSelector((state) => state.profiles)
+  console.log(profiles)
  const [switchEdit, setSwitchEdit] = useState(0)
 
   // eslint-disable-next-line 
@@ -47,6 +48,9 @@ const Settings = () => {
   useEffect(() => {
     dispatch(getProfilesByUser({ search: user?.result?._id || user?.result.googleId}))
   },[location, switchEdit])
+
+
+      localStorage.setItem('profileDetail', JSON.stringify({...profiles}))
   
   const handleSubmit = async(e) => {
     e.preventDefault();

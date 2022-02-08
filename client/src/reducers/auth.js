@@ -8,7 +8,7 @@ const authReducer =(state = {authData: null}, action)=> {
             return {...state, authData: action?.data}
 
             case LOGOUT:
-                localStorage.clear()
+                localStorage.removeItem('profile')
                 return {...state, authData: null}
 
             case UPDATE_USER:

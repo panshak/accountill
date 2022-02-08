@@ -17,7 +17,6 @@ const ClientList = () => {
     const [currentId, setCurrentId] = useState(null)
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('profile'))
-    console.log(user)
     const {clients} = useSelector((state) => state.clients)
     const isLoading = useSelector(state => state.clients.isLoading)
     // const clients = []
