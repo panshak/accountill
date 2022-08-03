@@ -6,10 +6,11 @@ Built with the MERN stack (MongoDB, Express, React and NodeJS).
 
 ## Update
 I am pleased to inform you that the name of this repository has been changed from Arc Invoice to Accountill.
-There are so many things coming ! Stay tuned!!
+There are so many things coming! Stay tuned!!
 
-----
+
 Panshak
+----
 
   * [Introduction](#introduction)
   * [Key Features](#key-features)

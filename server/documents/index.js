@@ -112,7 +112,7 @@ img {
 <div class="invoice-container">
 <section  class="header">
         <div>
-          ${company.logo ? `<img src=${company?.logo} />` : `<h2>___</h2>`}
+          ${company?.logo ? `<img src=${company?.logo} />` : `<h2>___</h2>`}
         </div>
         <div class="receipt-id" style="margin-top: -120px 0 40px 0">
             
