@@ -2,18 +2,16 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
-
 }
 
 body {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 
 .tb-container .Mui-focused {
   background-color: white;
-   box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
-   border-radius: 4px;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
 }
 
 .MuiTableCell-head {
@@ -28,8 +26,6 @@ body {
 .MuiPaper-elevation1 {
   box-shadow: none !important;
 }
-
-
 
 /* ##########################PROGRESS BUTTON */
 .pb-container {
@@ -52,7 +48,8 @@ body {
   width: 100%;
   -webkit-tap-highlight-color: transparent;
   outline: none;
-  transition: background-color 0.3s, width 0.3s, border-width 0.3s, border-color 0.3s, border-radius 0.3s;
+  transition: background-color 0.3s, width 0.3s, border-width 0.3s,
+    border-color 0.3s, border-radius 0.3s;
 }
 .pb-container .pb-button span {
   display: inherit;
@@ -72,7 +69,7 @@ body {
   fill: none;
 }
 .pb-container .pb-button svg.pb-progress-circle {
-  animation: spin 0.9s infinite cubic-bezier(0.085, 0.260, 0.935, 0.710);
+  animation: spin 0.9s infinite cubic-bezier(0.085, 0.26, 0.935, 0.71);
 }
 .pb-container .pb-button svg.pb-progress-circle path {
   stroke: currentColor;
@@ -105,8 +102,8 @@ body {
   opacity: 1;
 }
 .pb-container.success .pb-button {
-  border-color: #A0D468;
-  background-color: #A0D468;
+  border-color: #a0d468;
+  background-color: #a0d468;
 }
 .pb-container.success .pb-button span {
   transition: all 0.15s;
@@ -117,8 +114,8 @@ body {
   opacity: 1;
 }
 .pb-container.error .pb-button {
-  border-color: #ED5565;
-  background-color: #ED5565;
+  border-color: #ed5565;
+  background-color: #ed5565;
 }
 .pb-container.error .pb-button span {
   transition: all 0.15s;
@@ -141,8 +138,6 @@ body {
 
 /* ##########################PROGRESS BUTTON */
 
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -161,18 +156,16 @@ p {
   transition: none;
 } */
 
-
 /* RESPONSIVE SIDE NAVBAR */
 :root {
   font-size: 16px;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
   --bg-primary: #23232e;
   --bg-secondary: #141418;
   --transition-speed: 600ms;
 }
-
 
 main {
   margin-left: 5rem;
@@ -187,7 +180,6 @@ main {
   z-index: 100;
 }
 
-
 /* width */
 .navbar::-webkit-scrollbar {
   width: 1px;
@@ -196,13 +188,13 @@ main {
 
 /* Track */
 .navbar::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 1px grey; 
+  box-shadow: inset 0 0 1px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 .navbar::-webkit-scrollbar-thumb {
-  background: rgb(141, 187, 255); 
+  background: rgb(141, 187, 255);
   border-radius: 10px;
 }
 
@@ -281,8 +273,7 @@ main {
   transition: var(--transition-speed);
 }
 
-.logo-text
-{
+.logo-text {
   display: inline;
   position: absolute;
   left: -999px;
@@ -334,13 +325,11 @@ main {
     display: inline;
   }
 
-  .navbar:hover .logo svg
-  {
+  .navbar:hover .logo svg {
     margin-left: 11rem;
   }
 
-  .navbar:hover .logo-text
-  {
+  .navbar:hover .logo-text {
     left: 0px;
   }
 }
@@ -382,14 +371,12 @@ main {
   display: block;
 }
 
-
 /* PAYMENT HISTORY ACCORDION */
 .tab input {
   position: absolute;
   opacity: 0;
   z-index: -1;
 }
-
 
 /* Accordion styles */
 .tabs {
@@ -405,7 +392,7 @@ main {
   .tabs {
     width: 95%;
   }
-  }
+}
 
 .tab {
   width: 100%;
@@ -429,14 +416,14 @@ main {
   width: 1em;
   height: 1em;
   text-align: center;
-  transition: all .35s;
+  transition: all 0.35s;
 }
 .tab-content {
   max-height: 0;
   padding: 0 1em;
   color: #2c3e50;
   background: white;
-  transition: all .35s;
+  transition: all 0.35s;
 }
 .tab-close {
   display: flex;
@@ -455,15 +442,15 @@ input:checked + .tab-label {
 }
 input:checked + .tab-label::after {
   -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 input:checked ~ .tab-content {
   max-height: 100vh;
   padding: 1em;
 }
 
-
-.customInputs input:focus, textarea:focus {
+.customInputs input:focus,
+textarea:focus {
   outline: 0 !important;
   border-bottom-color: #ffab00 !important;
 }
