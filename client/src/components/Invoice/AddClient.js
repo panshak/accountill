@@ -35,7 +35,6 @@ const styles = (theme) => ({
 
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
-  const { t } = useTranslation();
 
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
@@ -79,6 +78,7 @@ const AddClient = ({ setOpen, open }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   // eslint-disable-next-line
   const [openSnackbar, closeSnackbar] = useSnackbar();
+  const { t } = useTranslation();
 
   useEffect(() => {
     var checkId = user?.result?._id;

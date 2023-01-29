@@ -11,7 +11,7 @@ import {
 } from "./constants";
 
 import { unicodeToChar } from "../utils/utils";
-import { useTranslation } from "react-i18next";
+import i18n from "../i18nextConf";
 
 // export const getInvoices = () => async (dispatch)=> {
 //     try {
@@ -73,12 +73,11 @@ export const updateInvoice = (id, invoice) => async (dispatch) => {
 };
 
 export const deleteInvoice = (id, openSnackbar) => async (dispatch) => {
-  const { t } = useTranslation();
   try {
     await api.deleteInvoice(id);
 
     dispatch({ type: DELETE, payload: id });
-    openSnackbar(unicodeToChar(t("snackbar.invoice.delete_success")));
+    openSnackbar(unicodeToChar(i18n.t("snackbar.invoice.delete_success")));
   } catch (error) {
     console.log(error.response);
   }

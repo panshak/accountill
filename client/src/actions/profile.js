@@ -11,7 +11,7 @@ import {
 } from "./constants";
 import * as api from "../api/index.js";
 import { unicodeToChar } from "../utils/utils";
-import { useTranslation } from "react-i18next";
+import i18n from "../i18nextConf";
 
 export const getProfile = (id) => async (dispatch) => {
   try {
@@ -78,12 +78,11 @@ export const createProfile = (profile, history) => async (dispatch) => {
 };
 
 export const updateProfile = (id, form, openSnackbar) => async (dispatch) => {
-  const { t } = useTranslation();
   try {
     const { data } = await api.updateProfile(id, form);
 
     dispatch({ type: UPDATE_PROFILE, payload: data });
-    openSnackbar(unicodeToChar(t("snackbar.profile.update_success")));
+    openSnackbar(unicodeToChar(i18n.t("snackbar.profile.update_success")));
   } catch (error) {
     console.log(error);
   }

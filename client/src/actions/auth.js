@@ -1,18 +1,17 @@
-import { useTranslation } from "react-i18next";
+import i18n from "../i18nextConf";
 import * as api from "../api/index";
 import { unicodeToChar } from "../utils/utils";
 import { AUTH, CREATE_PROFILE } from "./constants";
 
 export const signin =
   (formData, openSnackbar, setLoading) => async (dispatch) => {
-    const { t } = useTranslation();
     try {
       //login the user
       const { data } = await api.signIn(formData);
 
       dispatch({ type: AUTH, data });
       // setLoading(false)
-      openSnackbar(unicodeToChar(t("snackbar.signin.successfull")));
+      openSnackbar(unicodeToChar(i18n.t("snackbar.signin.successfull")));
       // history.push('/dashboard')
       window.location.href = "/dashboard";
     } catch (error) {
@@ -24,7 +23,6 @@ export const signin =
 
 export const signup =
   (formData, openSnackbar, setLoading) => async (dispatch) => {
-    const { t } = useTranslation();
     try {
       //Sign up the user
       const { data } = await api.signUp(formData);
@@ -42,7 +40,7 @@ export const signup =
       dispatch({ type: CREATE_PROFILE, payload: info });
       window.location.href = "/dashboard";
       // history.push('/dashboard')
-      openSnackbar(unicodeToChar(t("snackbar.signup.successfull")));
+      openSnackbar(unicodeToChar(i18n.t("snackbar.signup.successfull")));
     } catch (error) {
       console.log(error);
       openSnackbar(error?.response?.data?.message);

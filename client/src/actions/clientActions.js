@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import i18n from "../i18nextConf";
 import * as api from "../api/index";
 import { unicodeToChar } from "../utils/utils";
 
@@ -37,21 +37,19 @@ export const getClientsByUser = (searchQuery) => async (dispatch) => {
 };
 
 export const createClient = (client, openSnackbar) => async (dispatch) => {
-  const { t } = useTranslation();
   try {
     const { data } = await api.addClient(client);
     dispatch({ type: ADD_NEW_CLIENT, payload: data });
-    openSnackbar(unicodeToChar(t("snackbar.customer.add_success")));
+    openSnackbar(unicodeToChar(i18n.t("snackbar.customer.add_success")));
   } catch (error) {
     console.log(error);
   }
 };
 
 export const updateClient = (id, client, openSnackbar) => async (dispatch) => {
-  const { t } = useTranslation();
   const { data } = await api.updateClient(id, client);
   dispatch({ type: UPDATE_CLIENT, payload: data });
-  openSnackbar(unicodeToChar(t("snackbar.customer.updated_successfully")));
+  openSnackbar(unicodeToChar(i18n.t("snackbar.customer.updated_successfully")));
   try {
   } catch (error) {
     console.log(error);
@@ -59,12 +57,11 @@ export const updateClient = (id, client, openSnackbar) => async (dispatch) => {
 };
 
 export const deleteClient = (id, openSnackbar) => async (dispatch) => {
-  const { t } = useTranslation();
   try {
     await api.deleteClient(id);
 
     dispatch({ type: DELETE_CLIENT, payload: id });
-    openSnackbar(unicodeToChar(t("snackbar.customer.delete_success")));
+    openSnackbar(unicodeToChar(i18n.t("snackbar.customer.delete_success")));
   } catch (error) {
     console.log(error);
   }
