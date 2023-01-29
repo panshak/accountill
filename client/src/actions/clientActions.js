@@ -1,66 +1,68 @@
-import * as api from '../api/index'
+import i18n from "../i18nextConf";
+import * as api from "../api/index";
+import { unicodeToChar } from "../utils/utils";
 
-import { ADD_NEW_CLIENT, UPDATE_CLIENT, DELETE_CLIENT, FETCH_CLIENTS_BY_USER, FETCH_CLIENT, START_LOADING, END_LOADING } from './constants'
-
+import {
+  ADD_NEW_CLIENT,
+  UPDATE_CLIENT,
+  DELETE_CLIENT,
+  FETCH_CLIENTS_BY_USER,
+  FETCH_CLIENT,
+  START_LOADING,
+  END_LOADING,
+} from "./constants";
 
 export const getClient = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: START_LOADING });
-      const { data } = await api.fetchClient(id);
-      dispatch({ type: FETCH_CLIENT, payload: { client: data } });
-
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-export const getClientsByUser =(searchQuery) => async (dispatch) => {
-    try {
-      dispatch({ type: START_LOADING })
-    const  { data: { data } } = await api.fetchClientsByUser(searchQuery)
-      
-      dispatch({ type: FETCH_CLIENTS_BY_USER, payload: data });
-      dispatch({ type: END_LOADING })
-    } catch (error) {
-      console.log(error.response)
-      
-    }
+  try {
+    dispatch({ type: START_LOADING });
+    const { data } = await api.fetchClient(id);
+    dispatch({ type: FETCH_CLIENT, payload: { client: data } });
+  } catch (error) {
+    console.log(error);
   }
+};
 
+export const getClientsByUser = (searchQuery) => async (dispatch) => {
+  try {
+    dispatch({ type: START_LOADING });
+    const {
+      data: { data },
+    } = await api.fetchClientsByUser(searchQuery);
 
-export const createClient =(client, openSnackbar) => async (dispatch) => {
+    dispatch({ type: FETCH_CLIENTS_BY_USER, payload: data });
+    dispatch({ type: END_LOADING });
+  } catch (error) {
+    console.log(error.response);
+  }
+};
 
-    try {
-        const { data } = await api.addClient(client)
-        dispatch({ type: ADD_NEW_CLIENT, payload: data })
-        openSnackbar("Customer added successfully")
+export const createClient = (client, openSnackbar) => async (dispatch) => {
+  try {
+    const { data } = await api.addClient(client);
+    dispatch({ type: ADD_NEW_CLIENT, payload: data });
+    openSnackbar(unicodeToChar(i18n.t("snackbar.customer.add_success")));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-    } catch (error) {
-        console.log(error)
-    }
-}
+export const updateClient = (id, client, openSnackbar) => async (dispatch) => {
+  const { data } = await api.updateClient(id, client);
+  dispatch({ type: UPDATE_CLIENT, payload: data });
+  openSnackbar(unicodeToChar(i18n.t("snackbar.customer.updated_successfully")));
+  try {
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+export const deleteClient = (id, openSnackbar) => async (dispatch) => {
+  try {
+    await api.deleteClient(id);
 
-export const updateClient =(id, client, openSnackbar) => async (dispatch) => {
-
-    const { data } = await api.updateClient(id, client)
-    dispatch({ type: UPDATE_CLIENT, payload: data })
-    openSnackbar("Customer updated successfully")
-    try {
-        
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export const deleteClient =(id, openSnackbar) => async (dispatch) => {
-    try {
-        await api.deleteClient(id)
-
-        dispatch({type: DELETE_CLIENT, payload: id})
-        openSnackbar("Customer deleted successfully")
-    } catch (error) {
-        console.log(error)
-    }
-}
+    dispatch({ type: DELETE_CLIENT, payload: id });
+    openSnackbar(unicodeToChar(i18n.t("snackbar.customer.delete_success")));
+  } catch (error) {
+    console.log(error);
+  }
+};

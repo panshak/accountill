@@ -1,10 +1,20 @@
 .footerText {
-    border-top: solid 1px rgb(219, 219, 219);
-    width: 100%;
-    margin: 0px auto;
-    text-align: center;
-    padding: 25px;
-    text-align: center;
-    background-color: #EEEEEE;
-  }
+  border-top: solid 1px rgb(219, 219, 219);
+  width: 100%;
+  margin: 0px auto;
+  /* text-align: center; */
+  padding: 25px;
+  /* text-align: center; */
+  background-color: #eeeeee;
+  display: flex;
+}
 
+.text {
+  margin-right: auto;
+  margin-left: -110px;
+}
+
+.select {
+  margin-right: auto;
+  margin-left: 120px;
+}
