@@ -22,10 +22,10 @@ import ClientModel from '../models/ClientModel.js'
 
 
 export const getClient = async (req, res) => { 
-    const { id } = req.params;
+   // const { id } = req.params;
 
     try {
-        const client = await ClientModel.findById(id);
+        const client = await ClientModel.findById(req.params.id);
         
         res.status(200).json(client);
     } catch (error) {
