@@ -4,6 +4,7 @@ services:
     container_name: client
     image: client-prod
     build:
+      context: .
       dockerfile: ./client/Dockerfile
       target: production
     ports:
@@ -18,6 +19,7 @@ services:
     container_name: server
     image: server-prod
     build:
+      context: .
       dockerfile: ./server/Dockerfile
     ports:
       - '5000:5000'
