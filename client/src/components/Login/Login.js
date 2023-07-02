@@ -53,12 +53,9 @@ const Login = () => {
     const googleSuccess = async (res) => {
         const result = jwtDecode(res.credential);
         const token = res?.credential;
-        dispatch(createProfile({name: result?.name, email: result?.email, userId: result?.jti, phoneNumber: '', businessName: '', contactAddress: '', logo: result?.picture, website: ''}))
-
+        
         try {
-            dispatch({ type: "AUTH", data: {result, token}})
-
-            window.location.href='/dashboard'
+          dispatch(createProfile({name: result?.name, email: result?.email, userId: result?.sub, phoneNumber: '', businessName: '', contactAddress: '', logo: result?.picture, website: ''},token))     
             
         } catch (error) {
             console.log(error)
@@ -66,7 +63,7 @@ const Login = () => {
     }
     const googleError =(error) => {
         console.log(error)
-        console.log("Google Sign In was unseccassful. Try again later")
+        console.log("Google Sign In was unsuccessful. Try again later")
     }
 
 
