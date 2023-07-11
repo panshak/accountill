@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'left',
     padding: theme.spacing(2),
-    border: 'solid 1px #bcbcbc'
+    border: 'solid 1px #bcbcbc',
     // backgroundColor: '#EEEEEE'
   },
   root: {

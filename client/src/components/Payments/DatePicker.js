@@ -7,9 +7,8 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-export default function MaterialUIPickers({ setSelectedDate, selectedDate}) {
+export default function MaterialUIPickers({ setSelectedDate, selectedDate }) {
   // The first commit of Material-UI
-
 
   const handleDateChange = (date) => {
     setSelectedDate(date.toISOString());
@@ -17,7 +16,11 @@ export default function MaterialUIPickers({ setSelectedDate, selectedDate}) {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container justifyContent="space-around" style={{width: '97%', paddingLeft: '10px', paddingBottom: '15px'}}>
+      <Grid
+        container
+        justifyContent="space-around"
+        style={{ width: '97%', paddingLeft: '10px', paddingBottom: '15px' }}
+      >
         <KeyboardDatePicker
           fullWidth
           disableToolbar
