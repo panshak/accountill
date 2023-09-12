@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 const InvoiceType = ({ type, setType }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  
 
   const handleChange = (event) => {
     setType(event.target.value);
@@ -41,9 +40,21 @@ const InvoiceType = ({ type, setType }) => {
 
   return (
     <div>
-      <p style={{marginBottom: '-10px', paddingTop: '10px', color: 'gray'}}>Select type</p>
-      <Button style={{lineSpacing: 1, fontSize: 35, fontWeight: 700}} onClick={handleClickOpen}>{type? type : 'Invoice'}</Button>
-      <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose}>
+      <p style={{ marginBottom: '-10px', paddingTop: '10px', color: 'gray' }}>
+        Select type
+      </p>
+      <Button
+        style={{ lineSpacing: 1, fontSize: 35, fontWeight: 700 }}
+        onClick={handleClickOpen}
+      >
+        {type ? type : 'Invoice'}
+      </Button>
+      <Dialog
+        disableBackdropClick
+        disableEscapeKeyDown
+        open={open}
+        onClose={handleClose}
+      >
         {/* <DialogTitle>Fill the form</DialogTitle> */}
         <DialogContent>
           <div className={classes.container}>
@@ -79,6 +90,6 @@ const InvoiceType = ({ type, setType }) => {
       </Dialog>
     </div>
   );
-}
+};
 
-export default InvoiceType
+export default InvoiceType;
