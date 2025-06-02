@@ -8,7 +8,6 @@ export const ThemeProvider = ({ children }) => {
     const savedTheme = localStorage.getItem('theme');
     return savedTheme ? savedTheme : 'light';
   };
-
   const [theme, setTheme] = useState(getInitialTheme());
 
   // Toggle between light and dark themes
