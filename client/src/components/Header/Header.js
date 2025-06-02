@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import decode from 'jwt-decode'
 import styles from './Header.module.css'
+import { ThemeContext } from '../../context/ThemeContext'
 
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -13,6 +14,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
 // import axios from 'axios'
 
 
@@ -21,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   paper: {
+    marginRight: theme.spacing(2),
+  },
+  themeToggle: {
     marginRight: theme.spacing(2),
   },
 }));
@@ -32,6 +39,7 @@ const Header = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
     const history = useHistory()
     const location = useLocation()
+    const { theme, toggleTheme } = useContext(ThemeContext)
 
 
     useEffect(() => {
@@ -117,42 +125,60 @@ const Header = () => {
     if(!user) return (
         <div className={styles.header2}>
          <img style={{width: '50px', cursor: 'pointer'}} onClick={()=> history.push('/')} src="https://i.postimg.cc/hGZKzdkS/logo.png" alt="arc-invoice" />
-        <button onClick={()=> history.push('/login')} className={styles.login}>Get started</button>
+         <div className={styles.headerActions}>
+           <IconButton 
+             className={classes.themeToggle} 
+             onClick={toggleTheme} 
+             color="inherit"
+             aria-label="toggle dark/light theme"
+           >
+             {theme === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+           </IconButton>
+           <button onClick={()=> history.push('/login')} className={styles.login}>Get started</button>
+         </div>
         </div>
     )
     return (
         <div className={styles.header}>
-            <div className={classes.root}>
-      <div>
-        <Button
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-        >
-          <Avatar style={{backgroundColor: '#1976D2'}}>{user?.result?.name?.charAt(0)}</Avatar>
-        </Button>
-        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper elevation={3}>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown} >
-                    <MenuItem onClick={() => openLink('settings') }>{(user?.result?.name).split(" ")[0]}</MenuItem>
-                    <MenuItem onClick={()=> logout()} >Logout</MenuItem>
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
-    </div>
-
-
+            <div className={styles.headerContent}>
+              <IconButton 
+                className={classes.themeToggle} 
+                onClick={toggleTheme} 
+                color="inherit"
+                aria-label="toggle dark/light theme"
+              >
+                {theme === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
+              <div className={classes.root}>
+                <div>
+                  <Button
+                    ref={anchorRef}
+                    aria-controls={open ? 'menu-list-grow' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleToggle}
+                  >
+                    <Avatar style={{backgroundColor: '#1976D2'}}>{user?.result?.name?.charAt(0)}</Avatar>
+                  </Button>
+                  <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                    {({ TransitionProps, placement }) => (
+                      <Grow
+                        {...TransitionProps}
+                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                      >
+                        <Paper elevation={3}>
+                          <ClickAwayListener onClickAway={handleClose}>
+                            <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown} >
+                              <MenuItem onClick={() => openLink('settings') }>{(user?.result?.name).split(" ")[0]}</MenuItem>
+                              <MenuItem onClick={()=> logout()} >Logout</MenuItem>
+                            </MenuList>
+                          </ClickAwayListener>
+                        </Paper>
+                      </Grow>
+                    )}
+                  </Popper>
+                </div>
+              </div>
+            </div>
         </div>
     )
 }
