@@ -7,6 +7,24 @@
   min-height: calc(100% - 186px);
 }
 
+.themeSection {
+  width: 70%;
+  margin: 0 auto 20px auto;
+  padding: 20px;
+}
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.themeIcon {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
 .hero {
   width: 50%;
   margin: 0px auto;

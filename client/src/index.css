@@ -2,12 +2,15 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
-
 }
 
 body {
-  background-color: #EEEEEE;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Apply smooth transitions to all elements for theme changes */
+div, p, h1, h2, h3, h4, h5, h6, span, button, input, textarea, a, li, ul, ol, table, tr, td, th {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tb-container .Mui-focused {

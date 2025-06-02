@@ -8,6 +8,11 @@
     /* background-color: #1976d2; */
   }
 
+  .headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 
   .header2 {
     display: flex;
@@ -17,6 +22,11 @@
     border-bottom: 1px solid rgb(218, 218, 218);
     padding-left: 20px;
     /* background-color: #1976d2; */
+  }
+
+  .headerActions {
+    display: flex;
+    align-items: center;
   }
 
   .logo {
