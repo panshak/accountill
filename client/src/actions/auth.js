@@ -24,13 +24,17 @@ export const signin =(formData, openSnackbar, setLoading) => async(dispatch) => 
 export const signup =(formData, openSnackbar, setLoading) => async(dispatch) => {
 
     try {
-        //Sign up the user
+        // 1. Sign up the user. Server now returns { result, userProfile, token }
         const { data } = await api.signUp(formData)
-        dispatch({ type: AUTH, data})
-        const { info } = await api.createProfile({name: data?.result?.name, email: data?.result?.email, userId: data?.result?._id, phoneNumber: '', businessName: '', contactAddress: '', logo: '', website: ''});
-        dispatch({ type: CREATE_PROFILE, payload: info });
-        window.location.href="/dashboard"
+        
+        // 2. Dispatch AUTH with the full data object (contains user, profile, token)
+        dispatch({ type: AUTH, data}) 
+        
+        // 3. FIX: Dispatch CREATE_PROFILE using the userProfile data from the backend response
+        dispatch({ type: CREATE_PROFILE, payload: data.userProfile }); // Use data.userProfile, NOT 'info'
+
         // history.push('/dashboard')
+        window.location.href="/dashboard"
         openSnackbar("Sign up successfull")
 
     } catch (error) {

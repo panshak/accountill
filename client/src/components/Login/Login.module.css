@@ -1,61 +1,63 @@
 .pageContainer {
-  margin-top: 100px;
+  margin-top: 50px; /* Reduced margin to pull form up slightly */
+  min-height: 100vh; /* Ensure the container covers the full screen height */
+  display: flex;
+  justify-content: center;
 }
 
 .formContainer {
   background-color: white;
-  width: 30%;
+  width: 35%; /* Slightly wider for better field appearance */
+  max-width: 420px; /* Set a max width for large screens */
   margin: 50px auto;
-  border-radius: 8px;
-  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
-  border: solid 1px rgb(207, 207, 207);
-
+  border-radius: 12px; /* Softer, more modern corners */
+  /* --- ENHANCEMENT: MODERN SHADOW --- */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+  border: none; /* Remove border after adding shadow */
 }
 
 .formContainer form {
-  padding: 10px 15px !important;
+  padding: 20px 30px !important; /* Increased padding */
   margin: 0px !important;
 }
 
 .inputField {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
-  padding: 15px 15px 15px 10px;
-  font-size: 16px;
-  border: none;
-  border: 1px solid rgb(219, 219, 219);
+  padding: 12px 15px; /* Tighter padding for standard input height */
+  font-size: 1rem;
+  border: 1px solid #ccc; /* Softer border color */
   border-radius: 8px;
   margin: 10px 0px;
   outline: none;
+  transition: border-color 0.3s ease; /* Add transition for focus effect */
 }
 
 .inputField:focus {
-  border-bottom: 2px solid rgb(1, 24, 224);
+  /* --- ENHANCEMENT: Focus uses the Accent Color --- */
+  border: 1px solid #00A389; 
+  box-shadow: 0 0 0 2px rgba(0, 163, 137, 0.2); /* Soft glow effect */
 }
 
 
 .buttons {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* padding: 5px; */
+  gap: 15px; /* Reduced gap */
   margin: 20px 0px;
 }
 
 .buttons>div {
-  margin: 8px;
-  margin-bottom: 0px;
+  margin: 0px; /* Clean up extra margin */
 }
 
 .option {
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #e0e0e0; /* Softer border color */
   line-height: 0.1em;
-  margin: 10px 0 20px;
-  color: #0070f3;
+  margin: 20px 0; /* More vertical space */
+  color: #999; /* Neutral gray color */
 }
 
 .option span {
@@ -63,82 +65,95 @@
   padding: 0 10px;
 }
 
+/* === ENHANCEMENT: Primary Button - Submit Btn === */
 .submitBtn {
-  border: 1px solid rgb(51, 51, 216);
+  border: none;
   padding: 15px 30px;
-  border-radius: 50px;
-  background-color: white;
+  border-radius: 8px; /* Modern, square corners */
+  background-color: #00A389; /* Vibrant Teal Accent Color */
+  color: white;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 1rem;
+  font-weight: 600;
   outline: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 163, 137, 0.3); /* Subtle Shadow */
 }
 
 .submitBtn:hover {
-  background-color: rgb(209, 233, 255);
+  background-color: #008B76; /* Darker on hover */
+  box-shadow: 0 6px 15px rgba(0, 163, 137, 0.4);
 }
 
+/* === ENHANCEMENT: Secondary Button - Google Btn === */
 .googleBtn {
-  border: 1px solid rgb(216, 51, 51);
+  border: 1px solid #e0e0e0; /* Light gray border */
   padding: 15px 30px;
-  border-radius: 50px;
+  border-radius: 8px; /* Modern, square corners */
   background-color: white;
-  color: rgb(24, 24, 24);
+  color: #333; /* Darker text */
   cursor: pointer;
-  font-size: 15px;
+  font-size: 1rem;
+  font-weight: 600;
   outline: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
 }
 
 .googleBtn:hover {
-  background-color: rgb(216, 51, 51);
-  color: white;
+  background-color: #f5f5f5; /* Light background change on hover */
+  border-color: #ccc;
 }
 
+/* === Login Button (Used for Sign In/Sign Up toggle) === */
 .loginBtn {
   width: 100%;
-  border: 1px solid #0070f3;
+  border: 1px solid #00A389; /* Accent border */
   padding: 15px 30px;
-  /* border-radius: 50px; */
+  border-radius: 8px; /* Modern, square corners */
   background-color: white;
-  color: rgb(24, 24, 24);
+  color: #333;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 1rem;
   outline: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
 }
 
 .loginBtn:hover {
-  background-color: #0070f3;
+  background-color: #00A389;
   color: white;
 }
-
 
 
 .switchBtn {
   border-radius: 4px;
   padding: 10px;
   padding-bottom: 30px;
-  margin-top: 5px;
+  margin-top: 15px; /* Increased margin */
   background-color: white;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 0.95rem; /* Slightly smaller */
   outline: none;
   border: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #00A389; /* Use accent color for switch text */
+  font-weight: 600;
 }
 
 .switchBtn:hover {
-  background-color: rgb(245, 245, 245);
+  background-color: transparent; /* Cleaner hover effect */
+  text-decoration: underline;
 }
 
 
 @media screen and (max-width: 992px) {
 
-  /* For desktop: */
+  /* For tablets/mobile: */
   .formContainer {
     width: 95%;
+    margin: 30px auto;
 
   }
-
 }
