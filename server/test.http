@@ -1,0 +1,11 @@
+POST http://localhost:5000/clients
+Content-Type: application/json
+
+{
+  "name": "Dharunika",
+  "email": "dharunika@example.com",
+  "company": {
+      "name": "Test Company",
+      "email": "info@testcompany.com"
+  }
+}
