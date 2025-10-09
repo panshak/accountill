@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react' // <--- ADDED: useState
 import { toCommas } from '../../utils/utils'
 import styles from './Dashboard.module.css'
 import { useHistory, useLocation } from 'react-router-dom'
@@ -8,9 +8,10 @@ import Empty from '../svgIcons/Empty'
 import Chart from './Chart'
 // import Donut from './Donut'
 import moment from 'moment'
-import { Check, Pie, Bag, Card, Clock, Frown } from './Icons'
+import { Check, Pie, Card, Clock, Frown } from './Icons'
 import Spinner from '../Spinner/Spinner'
-
+import KPIHeader from '../KPIHeader'
+import { getDashboardKPIs } from '../../actions/dashboard' // <--- ASSUMED: Import new action
 
 const Dashboard = () => {
 
@@ -18,7 +19,15 @@ const Dashboard = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('profile'))
+    
+    // --- EDITED: Accessing the existing invoices state and the NEW dashboard state ---
     const { invoices, isLoading } = useSelector((state) => state?.invoices)
+    const dashboardState = useSelector((state) => state?.dashboard) // <--- ADDED: Access new dashboard state
+
+    // --- ADDED: State to manage the sticky header ---
+    const [isSticky, setSticky] = useState(false);
+    // ----------------------------------------------------
+
     // const unpaid = invoices?.filter((invoice) => (invoice.status === 'Unpaid') || (invoice.status === 'Partial'))
     const overDue = invoices?.filter((invoice) => invoice.dueDate <= new Date().toISOString())
 
@@ -54,13 +63,31 @@ const Dashboard = () => {
     for(let i = 0; i < invoices.length; i++) {
         totalAmount += invoices[i].total
     }
-   
+    
     
     useEffect(() => {
         dispatch(getInvoicesByUser({search: user?.result._id || user?.result?.googleId}));
+        // --- ADDED: Dispatch new action to fetch dashboard KPIs ---
+        dispatch(getDashboardKPIs()); // Assuming this action exists and is correctly structured
+        // ----------------------------------------------------------------
+        
+        // --- ADDED: Scroll listener for sticky header ---
+        const handleScroll = () => {
+            // Set sticky true when scrolled down past a certain threshold (e.g., 60px)
+            setSticky(window.scrollY > 60); 
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        
+        // Cleanup function
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+        // ----------------------------------------------------------------
+
         // eslint-disable-next-line
     }, [location, dispatch]);
-   
+    
 
     const unpaidInvoice = invoices?.filter((invoice) => invoice.status === 'Unpaid')
     const paid = invoices?.filter((invoice) => invoice.status === 'Paid')
@@ -71,13 +98,25 @@ const Dashboard = () => {
       }
 
 
-      if(isLoading) {
+    // --- EDITED: Adjusted isLoading check to include new dashboard state loading ---
+    // Combined loading checks for a unified spinner
+    if(isLoading || dashboardState?.loading) {
         return  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', paddingTop: '20px'}}>
             <Spinner />
         </div>
       }
+    // ---------------------------------------------------------------------------------
 
-      if(invoices.length === 0) {
+    // --- EDITED: Consider existing data for the new header structure ---
+    const kpiHeaderData = {
+        totalRevenue: totalPaid, // This is your existing "Payment Received"
+        totalExpenses: 0, // Placeholder, you'd fetch this from the server
+        totalProfit: totalPaid, // Placeholder (Revenue - Expenses)
+        // You can use the new data fetched via Redux here: dashboardState.kpis.summary
+    };
+    // ---------------------------------------------------------------------------------
+
+    if(invoices.length === 0) {
         return  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', paddingTop: '20px'}}>
             {/* <Spinner /> */}
           <Empty />
@@ -85,43 +124,33 @@ const Dashboard = () => {
         </div>
       }
 
-      
+    
     return (
         <div className={styles.pageContainer}>
-           
-    
-            <section className={styles.stat}>
-            <ul className={styles.autoGrid}>
-                        <li className={styles.listItem} style={{backgroundColor: '#1976d2', color: 'white'}}>
-                            <div>
-                                <p>{toCommas(totalPaid)}</p>
-                                <h2 style={{color: 'white'}}>Payment Received</h2>
-                            </div>
-                            <div>
-                                <Check />
-                            </div>
-                        </li>
+            
+            {/* --- ADDED: The new Sticky KPI Header Component --- */}
+            <KPIHeader 
+                data={kpiHeaderData} 
+                isSticky={isSticky} 
+            />
+            {/* -------------------------------------------------- */}
 
-                        <li className={styles.listItem} >
-                            <div>
-                                <p>{toCommas(totalAmount - totalPaid)}</p>
-                                <h2>Pending Amount</h2>
-                            </div>
-                            <div>
-                                <Pie />
-                            </div>
-                        </li>
+            {/* --- ADDED: Spacer div to prevent content jump when sticky is active --- */}
+            <div className={`${styles.spacer} ${isSticky ? styles.stickySpacerActive : ''}`}></div>
+            {/* ----------------------------------------------------------------------- */}
 
-                        <li className={styles.listItem} >
-                            <div>
-                                <p>{toCommas(totalAmount)}</p>
-                                <h2>Total Amount</h2>
-                            </div>
-                            <div>
-                                <Bag />
-                            </div>
-                        </li>
 
+            {/* --- EDITED: Moved the original KPI cards JSX to the old section --- */}
+            {/* The original KPI section is commented out/removed as it's replaced by KPIHeader */}
+            {/* The list of all your invoice count metrics can be placed below the sticky header. */}
+
+            <section className={styles.stat} style={{ paddingTop: '20px' }}> {/* <-- Added padding to differentiate */}
+                <ul className={styles.autoGrid}>
+                        {/* Original KPI card for Payment Received removed/replaced by sticky header */}
+                        {/* Original KPI card for Pending Amount removed/replaced by sticky header */}
+                        {/* Original KPI card for Total Amount removed/replaced by sticky header */}
+                        {/* Original KPI card for Total Invoices moved below */}
+                        
                         <li className={styles.listItem} >
                             <div>
                                 <p>{invoices.length}</p>
@@ -131,7 +160,7 @@ const Dashboard = () => {
                                 <Card />
                             </div>
                         </li>
-
+                        
 
                         <li className={styles.listItem} style={{backgroundColor: '#206841', color: 'white'}}>
                             <div>
@@ -173,10 +202,10 @@ const Dashboard = () => {
                             </div>
                         </li>
                         
-                 
                 </ul>
-
             </section>
+            {/* --------------------------------------------------------------------- */}
+
 
             {paymentHistory.length !== 0 && (
             <section>
@@ -188,7 +217,7 @@ const Dashboard = () => {
                 <h1 style={{textAlign: 'center', padding: '30px' }}>{paymentHistory.length ? 'Recent Payments' : 'No payment received yet'}</h1>
                     <div>
                     <div className={styles.table}>
-                       
+                        
                         <table>
                             <tbody>
                             {paymentHistory.length !== 0 && (
@@ -218,7 +247,7 @@ const Dashboard = () => {
                     </div>
                     </div>
                 </section>
-           
+            
         </div>
     )
 }

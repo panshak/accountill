@@ -5,4 +5,17 @@ import clients from './clients'
 import auth from './auth'
 import profiles from './profiles'
 
-export default combineReducers({ invoices, clients, auth, profiles })
+// --- ADDED: Import the new dashboard reducer ---
+import { dashboardReducer } from './dashboard' 
+// ------------------------------------------------
+
+export default combineReducers({ 
+    invoices, 
+    clients, 
+    auth, 
+    profiles, 
+    
+    // --- ADDED: Mount the new dashboard reducer state slice ---
+    dashboard: dashboardReducer 
+    // ----------------------------------------------------------
+})
