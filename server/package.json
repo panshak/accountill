@@ -5,9 +5,12 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "start": "node index.js"
-  },
+ "scripts": {
+  "start": "node index.js",
+  "start-dev": "nodemon index.js",
+  "start-prod": "set NODE_ENV=production && node index.js"
+}
+,
   "keywords": [],
   "author": "Panshak Solomon",
   "license": "ISC",
