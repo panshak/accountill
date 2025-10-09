@@ -1,0 +1,46 @@
+name: Bug Report
+about: Report a bug to help us improve
+title: ''
+labels: bug
+assignees: ''
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Describe the Bug**
+        A clear and concise description of what the bug is.
+
+  - type: textarea
+    attributes:
+      label: To Reproduce
+      description: |
+        Steps to reproduce the behavior:
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+
+  - type: textarea
+    attributes:
+      label: Environment
+      description: |
+        Please complete the following information:
+        - OS: [e.g., iOS]
+        - Browser: [e.g., Chrome, Firefox]
+        - Version: [e.g., 22]
+
+  - type: textarea
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here.
