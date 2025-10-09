@@ -7,11 +7,11 @@
     "@devexpress/dx-react-chart": "^2.7.6",
     "@devexpress/dx-react-chart-material-ui": "^2.7.6",
     "@devexpress/dx-react-core": "^2.7.6",
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.58",
-    "@material-ui/pickers": "^3.3.10",
-    "@react-oauth/google": "^0.9.0",
+    "@material-ui/pickers": "^3.3.11",
+    "@react-oauth/google": "^0.9.1",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -33,7 +33,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-simple-snackbar": "^1.1.11",
-    "react-tiny-fab": "^4.0.3",
+    "react-tiny-fab": "^4.0.4",
     "recharts": "^2.0.9",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
@@ -41,7 +41,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
