@@ -1,0 +1,136 @@
+### 1. Test Server Root
+GET http://localhost:5000/
+Accept: application/json
+
+###
+
+### 2. Create a Client
+POST http://localhost:5000/clients
+Content-Type: application/json
+
+{
+  "name": "Dharunika",
+  "email": "dharunika@example.com",
+  "company": {
+      "name": "Test Company",
+      "email": "info@testcompany.com",
+      "phoneNumber": "1234567890",
+      "contactAddress": "123 Street, City",
+      "businessName": "Test Business",
+      "logo": "https://example.com/logo.png"
+  }
+}
+
+###
+
+### 3. Get All Clients (to copy client _id)
+GET http://localhost:5000/clients
+Accept: application/json
+
+###
+
+### 4. Create an Invoice
+POST http://localhost:5000/invoices
+Content-Type: application/json
+
+{
+  "clientId": "PUT_CLIENT_ID_HERE",
+  "items": [
+    { "itemName": "Service 1", "quantity": 2, "unitPrice": 100, "discount": 0 },
+    { "itemName": "Service 2", "quantity": 1, "unitPrice": 200, "discount": 0 }
+  ],
+  "company": {
+      "name": "Test Company",
+      "email": "info@testcompany.com",
+      "phoneNumber": "1234567890",
+      "contactAddress": "123 Street, City",
+      "businessName": "Test Business",
+      "logo": "https://example.com/logo.png"
+  },
+  "subTotal": 400,
+  "vat": 40,
+  "total": 440,
+  "totalAmountReceived": 0,
+  "balanceDue": 440,
+  "dueDate": "2025-10-20",
+  "date": "2025-10-09",
+  "type": "Invoice",
+  "id": "INV-001",
+  "status": "Unpaid",
+  "notes": "Thank you for your business"
+}
+
+###
+
+### 5. Get All Invoices (to copy invoice _id)
+GET http://localhost:5000/invoices
+Accept: application/json
+
+###
+
+### 6. Create PDF for the Invoice
+POST http://localhost:5000/create-pdf
+Content-Type: application/json
+
+{
+  "name": "Dharunika",
+  "email": "dharunika@example.com",
+  "company": {
+      "name": "Test Company",
+      "email": "info@testcompany.com",
+      "phoneNumber": "1234567890",
+      "contactAddress": "123 Street, City",
+      "businessName": "Test Business",
+      "logo": "https://example.com/logo.png"
+  },
+  "items": [
+    { "itemName": "Service 1", "quantity": 2, "unitPrice": 100, "discount": 0 },
+    { "itemName": "Service 2", "quantity": 1, "unitPrice": 200, "discount": 0 }
+  ],
+  "subTotal": 400,
+  "vat": 40,
+  "total": 440,
+  "totalAmountReceived": 0,
+  "balanceDue": 440,
+  "dueDate": "2025-10-20",
+  "date": "2025-10-09",
+  "type": "Invoice",
+  "id": "INV-001",
+  "status": "Unpaid",
+  "notes": "Thank you for your business"
+}
+
+###
+
+### 7. (Optional) Send PDF via Email
+POST http://localhost:5000/send-pdf
+Content-Type: application/json
+
+{
+  "email": "your-email@example.com",
+  "company": {
+      "name": "Test Company",
+      "email": "info@testcompany.com",
+      "phoneNumber": "1234567890",
+      "contactAddress": "123 Street, City",
+      "businessName": "Test Business",
+      "logo": "https://example.com/logo.png"
+  },
+  "name": "Dharunika",
+  "email": "dharunika0708@example.com",
+  "items": [
+    { "itemName": "Service 1", "quantity": 2, "unitPrice": 100, "discount": 0 },
+    { "itemName": "Service 2", "quantity": 1, "unitPrice": 200, "discount": 0 }
+  ],
+  "subTotal": 400,
+  "vat": 40,
+  "total": 440,
+  "totalAmountReceived": 0,
+  "balanceDue": 440,
+  "dueDate": "2025-10-20",
+  "date": "2025-10-09",
+  "type": "Invoice",
+  "id": "INV-001",
+  "status": "Unpaid",
+  "notes": "Thank you for your business"
+}
