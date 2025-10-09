@@ -31,7 +31,17 @@ export const getInvoice = (id) => async (dispatch)=> {
     try {
         const { data } = await api.fetchInvoice(id)
         const businessDetails = await api.fetchProfilesByUser({search: user?.result?._id || user?.result?.googleId})
-        const invoiceData = {...data, businessDetails}
+        // const invoiceData = {...data, businessDetails}
+        // FIX: Add default company info
+const company = data.company || {
+    name: "Your Company Name",
+    email: "info@company.com",
+    phone: "123-456-7890",
+    address: "Your Address"
+};
+
+const invoiceData = {...data, businessDetails, company}
+
         // console.log(invoiceData)
         dispatch({ type: GET_INVOICE, payload: invoiceData  })
     } catch (error) {
