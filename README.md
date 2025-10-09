@@ -28,6 +28,16 @@ This is a side project I've been working on. A full stack invoicing application 
 
 ![Invoice Dashboard](https://res.cloudinary.com/almpo/image/upload/v1637314504/invoice/dashboard_c5z0is.png)
 
+## Demo Login
+
+To try the application without creating an account, use the following demo credentials:
+
+- **Username:** demo
+- **Password:** demo123
+
+This allows you to explore the app features without signing up.
+
+
 ## Key Features
 - Send invoices, receipts, estimates, quotations and bills via email
 - Generate and send/download pdf invoices, receipts, estimates, quotations and bills via email
