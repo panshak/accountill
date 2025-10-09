@@ -1,0 +1,32 @@
+version: '3.1'
+services:
+  client:
+    container_name: client
+    image: client-prod
+    build:
+      dockerfile: ./client/Dockerfile
+      target: production
+    ports:
+      - '80:80'
+    depends_on:
+      - server
+      - mongo
+    links:
+      - server
+      - mongo
+  server:
+    container_name: server
+    image: server-prod
+    build:
+      dockerfile: ./server/Dockerfile
+    ports:
+      - '5000:5000'
+    depends_on:
+      - mongo
+    links:
+      - mongo
+  mongo:
+    image: mongo
+    container_name: MONGODB
+    ports:
+      - '27017'
