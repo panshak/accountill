@@ -5,10 +5,14 @@ import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+console.log("Loaded DB_URL:", process.env.DB_URL)
+
 import nodemailer from 'nodemailer'
 import pdf from 'html-pdf'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+import authRoutes from "./routes/auth.js";
+
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -33,6 +37,8 @@ app.use('/invoices', invoiceRoutes)
 app.use('/clients', clientRoutes)
 app.use('/users', userRoutes)
 app.use('/profiles', profile)
+app.use("/auth", authRoutes);
+
 
 // NODEMAILER TRANSPORT FOR SENDING INVOICE VIA EMAIL
 const transporter = nodemailer.createTransport({
