@@ -134,14 +134,13 @@ const AddClient = ({ setOpen, open, currentId, setCurrentId }) => {
     <div>
       <form >
         <Dialog
-          onClose={(e, reason) => {
-            if (reason !== 'backdropClick') {
-              handleClose()
-            }
-          }}
-          aria-labelledby="customized-dialog-title"
-          open={open} fullWidth
-        >
+  onClose={handleClose}
+  disableBackdropClick
+  aria-labelledby="customized-dialog-title"
+  open={open} 
+  fullWidth
+>
+
           <DialogTitle id="customized-dialog-title" onClose={handleClose} style={{ paddingLeft: '20px', color: 'white' }}>
             {currentId ? 'Edit Customer' : 'Add new Client'}
           </DialogTitle>
