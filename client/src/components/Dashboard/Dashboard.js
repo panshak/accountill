@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getInvoicesByUser } from '../../actions/invoiceActions'
 import Empty from '../svgIcons/Empty'
 import Chart from './Chart'
-// import Donut from './Donut'
+import Donut from './Donut'
 import moment from 'moment'
 import { Check, Pie, Bag, Card, Clock, Frown } from './Icons'
 import Spinner from '../Spinner/Spinner'
@@ -20,40 +20,16 @@ const Dashboard = () => {
     const user = JSON.parse(localStorage.getItem('profile'))
     const { invoices, isLoading } = useSelector((state) => state?.invoices)
     // const unpaid = invoices?.filter((invoice) => (invoice.status === 'Unpaid') || (invoice.status === 'Partial'))
-    const overDue = invoices?.filter((invoice) => invoice.dueDate <= new Date().toISOString())
+const overDue = invoices?.filter((invoice) => new Date(invoice.dueDate) < new Date());
 
-
-    let paymentHistory = []
-    for(let i = 0; i < invoices.length; i++) {
-        let history = []
-        if(invoices[i].paymentRecords !== undefined) {
-            history = [...paymentHistory, invoices[i].paymentRecords]
-            paymentHistory = [].concat.apply([], history);
-        }
-        
-    }
-
+const paymentHistory = invoices.flatMap(invoice => invoice.paymentRecords || []);
 
     //sort payment history by date
-   const sortHistoryByDate =  paymentHistory.sort(function(a, b) {
-        var c = new Date(a.datePaid);
-        var d = new Date(b.datePaid);
-        return d-c;
-    });
-    
-    
-    let totalPaid = 0
-    for(let i = 0; i < invoices.length; i++) {
-        if(invoices[i].totalAmountReceived !== undefined) {
-            totalPaid += invoices[i].totalAmountReceived
-        }
-        
-    }
+    const sortHistoryByDate = [...paymentHistory].sort((a, b) => new Date(b.datePaid) - new Date(a.datePaid));
 
-    let totalAmount = 0
-    for(let i = 0; i < invoices.length; i++) {
-        totalAmount += invoices[i].total
-    }
+    const totalPaid = invoices.reduce((sum, invoice) => sum + (invoice.totalAmountReceived || 0), 0)
+
+    const totalAmount = invoices.reduce((sum, invoice) => sum + invoice.total, 0)
    
     
     useEffect(() => {
@@ -176,6 +152,11 @@ const Dashboard = () => {
                  
                 </ul>
 
+            </section>
+
+            <section className={styles.donutSection}>
+                <h2 style={{textAlign: 'center', padding: '20px'}}>Invoice Status Distribution</h2>
+                <Donut unpaid={unpaidInvoice} paid={paid} partial={partial} />
             </section>
 
             {paymentHistory.length !== 0 && (

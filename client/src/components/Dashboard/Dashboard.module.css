@@ -178,6 +178,11 @@
       justify-content: center;
     }
 
+    .donutSection {
+      margin: 40px 0;
+      text-align: center;
+    }
+
 
     .table {
       width: 90%;
