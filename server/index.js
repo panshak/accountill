@@ -1,14 +1,19 @@
-
 //Copyright (c) 2022 Panshak Solomon
 
 import express from 'express'
 import cors from 'cors'
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
+import dotenv from 'dotenv' // <-- dotenv imported
 import nodemailer from 'nodemailer'
 import pdf from 'html-pdf'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+
+// -------------------------------------------------------------
+// MOVED: Calling dotenv.config() immediately to load DB_URL 
+// before mongoose.connect is executed later in the file.
+dotenv.config() 
+// -------------------------------------------------------------
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -16,6 +21,9 @@ const __dirname = dirname(__filename)
 import invoiceRoutes from './routes/invoices.js'
 import clientRoutes from './routes/clients.js'
 import userRoutes from './routes/userRoutes.js'
+// --- ADDED: Import the new dashboard route ---
+import dashboardRoutes from './routes/dashboard.js'
+// ----------------------------------------------
 
 import profile from './routes/profile.js'
 import pdfTemplate from './documents/index.js'
@@ -23,11 +31,19 @@ import pdfTemplate from './documents/index.js'
 import emailTemplate from './documents/email.js'
 
 const app = express()
-dotenv.config()
+// REMOVED: dotenv.config() was here (around line 32)
+// This has been moved up to ensure environment variables are loaded sooner.
 
-app.use((express.json({ limit: "30mb", extended: true})))
-app.use((express.urlencoded({ limit: "30mb", extended: true})))
-app.use((cors()))
+app.use(express.json({ limit: "30mb", extended: true}))
+app.use(express.urlencoded({ limit: "30mb", extended: true}))
+app.use(cors())
+
+
+// --- ADDED: Mount the new dashboard route with /api prefix ---
+// This is crucial for the client to access /api/dashboard/kpis
+app.use('/api', dashboardRoutes) 
+// ---------------------------------------------------------------
+
 
 app.use('/invoices', invoiceRoutes)
 app.use('/clients', clientRoutes)
@@ -36,45 +52,45 @@ app.use('/profiles', profile)
 
 // NODEMAILER TRANSPORT FOR SENDING INVOICE VIA EMAIL
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port : process.env.SMTP_PORT,
-    auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-    },
-    tls:{
-        rejectUnauthorized:false
-    }
+    host: process.env.SMTP_HOST,
+    port : process.env.SMTP_PORT,
+    auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
+    },
+    tls:{
+        rejectUnauthorized:false
+    }
 })
 
 
 var options = { format: 'A4' };
 //SEND PDF INVOICE VIA EMAIL
 app.post('/send-pdf', (req, res) => {
-    const { email, company } = req.body
+    const { email, company } = req.body
 
-    // pdf.create(pdfTemplate(req.body), {}).toFile('invoice.pdf', (err) => {
-    pdf.create(pdfTemplate(req.body), options).toFile('invoice.pdf', (err) => {
-       
-          // send mail with defined transport object
-        transporter.sendMail({
-            from: ` Accountill <hello@accountill.com>`, // sender address
-            to: `${email}`, // list of receivers
-            replyTo: `${company.email}`,
-            subject: `Invoice from ${company.businessName ? company.businessName : company.name}`, // Subject line
-            text: `Invoice from ${company.businessName ? company.businessName : company.name }`, // plain text body
-            html: emailTemplate(req.body), // html body
-            attachments: [{
-                filename: 'invoice.pdf',
-                path: `${__dirname}/invoice.pdf`
-            }]
-        });
+    // pdf.create(pdfTemplate(req.body), {}).toFile('invoice.pdf', (err) => {
+    pdf.create(pdfTemplate(req.body), options).toFile('invoice.pdf', (err) => {
+       
+          // send mail with defined transport object
+        transporter.sendMail({
+            from: ` Accountill <hello@accountill.com>`, // sender address
+            to: `${email}`, // list of receivers
+            replyTo: `${company.email}`,
+            subject: `Invoice from ${company.businessName ? company.businessName : company.name}`, // Subject line
+            text: `Invoice from ${company.businessName ? company.businessName : company.name }`, // plain text body
+            html: emailTemplate(req.body), // html body
+            attachments: [{
+                filename: 'invoice.pdf',
+                path: `${__dirname}/invoice.pdf`
+            }]
+        });
 
-        if(err) {
-            res.send(Promise.reject());
-        }
-        res.send(Promise.resolve());
-    });
+        if(err) {
+            res.send(Promise.reject());
+        }
+        res.send(Promise.resolve());
+    });
 });
 
 
@@ -85,31 +101,27 @@ app.post('/send-pdf', (req, res) => {
 
 //CREATE AND SEND PDF INVOICE
 app.post('/create-pdf', (req, res) => {
-    pdf.create(pdfTemplate(req.body), {}).toFile('invoice.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-        res.send(Promise.resolve());
-    });
+    pdf.create(pdfTemplate(req.body), {}).toFile('invoice.pdf', (err) => {
+        if(err) {
+            res.send(Promise.reject());
+        }
+        res.send(Promise.resolve());
+    });
 });
 
 //SEND PDF INVOICE
 app.get('/fetch-pdf', (req, res) => {
-     res.sendFile(`${__dirname}/invoice.pdf`)
+     res.sendFile(`${__dirname}/invoice.pdf`)
 })
 
 
 app.get('/', (req, res) => {
-    res.send('SERVER IS RUNNING')
-  })
+    res.send('SERVER IS RUNNING')
+  })
 
 const DB_URL = process.env.DB_URL
 const PORT = process.env.PORT || 5000
 
 mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
-    .catch((error) => console.log(error.message))
-
-mongoose.set('useFindAndModify', false)
-mongoose.set('useCreateIndex', true)
-
+    .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
+    .catch((error) => console.log(error.message))

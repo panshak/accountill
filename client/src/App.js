@@ -1,4 +1,3 @@
-
 //Copyright (c) 2022 Panshak Solomon
 
 import React from 'react'
@@ -18,36 +17,40 @@ import Settings from './components/Settings/Settings';
 import Forgot from './components/Password/Forgot'
 import Reset from './components/Password/Reset'
 
+// --- ADDED: Import the new global CSS file for sticky header styles ---
+import './global.css'
+// ----------------------------------------------------------------------
+
 function App() {
 
-  const user = JSON.parse(localStorage.getItem('profile'))
+  const user = JSON.parse(localStorage.getItem('profile'))
 
-  return (
-    <div>
-      <BrowserRouter>
-      <SnackbarProvider>
-     {user && <NavBar />} 
-      <Header />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/invoice" exact component={Invoice} />
-          <Route path="/edit/invoice/:id" exact component={Invoice} />
-          <Route path="/invoice/:id" exact component={InvoiceDetails} />
-          <Route path="/invoices" exact component={Invoices} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/settings" exact component={Settings} />
-          <Route path="/dashboard" exact component={Dashboard} />
-          <Route path="/customers" exact component={ClientList} />
-          <Route path="/forgot" exact component={Forgot} />
-          <Route path="/reset/:token" exact component={Reset} />
-          <Redirect exact from="/new-invoice" to="/invoice" />
+  return (
+    <div>
+      <BrowserRouter>
+      <SnackbarProvider>
+     {user && <NavBar />} 
+      <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/invoice" exact component={Invoice} />
+          <Route path="/edit/invoice/:id" exact component={Invoice} />
+          <Route path="/invoice/:id" exact component={InvoiceDetails} />
+          <Route path="/invoices" exact component={Invoices} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/settings" exact component={Settings} />
+          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/customers" exact component={ClientList} />
+          <Route path="/forgot" exact component={Forgot} />
+          <Route path="/reset/:token" exact component={Reset} />
+          <Redirect exact from="/new-invoice" to="/invoice" />
 
-        </Switch>
-        <Footer />
-        </SnackbarProvider>
-      </BrowserRouter>
-    </div>
-  );
+        </Switch>
+        <Footer />
+        </SnackbarProvider>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

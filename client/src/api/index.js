@@ -18,6 +18,11 @@ export const updateInvoice = (id, updatedInvoice) => API.patch(`/invoices/${id}`
 export const deleteInvoice =(id) => API.delete(`/invoices/${id}`)
 export const fetchInvoicesByUser = (searchQuery) => API.get(`/invoices?searchQuery=${searchQuery.search}`);
 
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEWLY ADDED FUNCTION <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+export const getDashboardKPIs = () => API.get('/dashboard/kpis');
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> NEWLY ADDED FUNCTION <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
 export const fetchClient = (id) => API.get(`/clients/${id}`);
 export const fetchClients = (page) => API.get(`/clients?page=${page}`);
 export const addClient =( client ) => API.post('/clients', client)
