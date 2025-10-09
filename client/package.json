@@ -27,6 +27,7 @@
     "react-dom": "^17.0.2",
     "react-dropzone": "^11.3.4",
     "react-multiple-select-dropdown-lite": "^2.0.4",
+    "react-native-bluetooth-escpos-printer-oyku-fork": "^0.0.7",
     "react-nice-dates": "^3.1.0",
     "react-progress-button": "^5.1.0",
     "react-redux": "^7.2.4",
