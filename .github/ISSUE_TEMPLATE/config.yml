@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Ask a Question
+    url: https://github.com/Panshak/accountill/discussions
+    about: Ask questions and discuss with other community members
+  - name: 🌐 Live Demo
+    url: https://accountill.com/
+    about: Try out the live application at accountill.com
+  - name: 📧 Contact Author
+    url: mailto:ipanshak@gmail.com
+    about: Email the author for support or inquiries
