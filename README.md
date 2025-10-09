@@ -178,3 +178,6 @@ to keep improving the project.
 ## License
 
 - This project is [MIT](https://github.com/Panshak/accountill/blob/master/LICENSE.md) licensed.
+
+
+This edit was made for pull request testing.
