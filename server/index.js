@@ -17,6 +17,10 @@ import invoiceRoutes from './routes/invoices.js'
 import clientRoutes from './routes/clients.js'
 import userRoutes from './routes/userRoutes.js'
 
+import session from 'express-session';
+import passport from './config/passport.js';
+import authRoutes from './routes/auth.js';
+
 import profile from './routes/profile.js'
 import pdfTemplate from './documents/index.js'
 // import invoiceTemplate from './documents/invoice.js'
@@ -103,13 +107,53 @@ app.get('/', (req, res) => {
     res.send('SERVER IS RUNNING')
   })
 
-const DB_URL = process.env.DB_URL
+
+const DB_URL = process.env.MONGODB_URI
 const PORT = process.env.PORT || 5000
 
-mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
-    .catch((error) => console.log(error.message))
+console.log('MongoDB URL:', DB_URL ? 'Present' : 'Missing')
+
+if (!DB_URL) {
+    console.error('ERROR: MONGODB_URI is missing from .env file!')
+    process.exit(1)
+}
+
+mongoose.connect(DB_URL, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
+    socketTimeoutMS: 45000, // Close sockets after 45 seconds
+})
+.then(() => {
+    console.log('✅ MongoDB Connected Successfully')
+    app.listen(PORT, () => console.log(`🚀 Server running on port: ${PORT}`))
+})
+.catch((error) => {
+    console.log('❌ MongoDB Connection Failed:')
+    console.log('Error Name:', error.name)
+    console.log('Error Message:', error.message)
+    console.log('Full Error:', error)
+    process.exit(1)
+})
 
 mongoose.set('useFindAndModify', false)
-mongoose.set('useCreateIndex', true)
 
+
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'your_session_secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Set to true if using HTTPS
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Add auth routes
+app.use('/auth', authRoutes);
+
+// Update your existing routes to use protection
+app.use('/invoices', invoiceRoutes); // You'll need to add auth middleware to these routes
+app.use('/clients', clientRoutes);
+app.use('/users', userRoutes);
+app.use('/profiles', profile);

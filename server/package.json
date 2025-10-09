@@ -14,13 +14,18 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-    "dotenv": "^8.5.0",
-    "express": "^4.17.1",
+    "dotenv": "^8.6.0",
+    "express": "^4.21.2",
+    "express-session": "^1.18.2",
+    "google-auth-library": "^10.4.0",
     "html-pdf": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.12.10",
-    "nodemailer": "^6.6.3"
+    "mongoose": "^5.13.23",
+    "nodemailer": "^6.6.3",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-jwt": "^4.0.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

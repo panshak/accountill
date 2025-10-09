@@ -1,34 +1,28 @@
-import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
+import jwt from 'jsonwebtoken';
+import User from '../models/userModel.js';
 
-dotenv.config()
-const SECRET = process.env.SECRET;
+export const protect = async (req, res, next) => {
+    let token;
 
-const auth = async (req, res, next) => {
-    try {
-        const token = req.headers.authorization.split(" ")[1]
-        const isCustomAuth = token.length < 500 
-
-        let decodeData;
-
-        //If token is custom token do this
-        if(token && isCustomAuth) {
-            decodeData = jwt.verify(token, SECRET)
-
-            req.userId = decodeData?.id
-
-        } else {
-            //Else of token is google token then do this
-            decodeData = jwt.decode(token)
-
-            req.userId = decodeData?.sub
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+        try {
+            token = req.headers.authorization.split(' ')[1];
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = await User.findById(decoded.id).select('-password');
+            next();
+        } catch (error) {
+            console.error('Token verification failed:', error);
+            return res.status(401).json({ message: 'Not authorized, token failed' });
         }
-
-        next()
-
-    } catch (error) {
-        console.log(error)
     }
-}
 
-export default auth
+    if (!token) {
+        return res.status(401).json({ message: 'Not authorized, no token' });
+    }
+};
+
+export const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRE,
+    });
+};
