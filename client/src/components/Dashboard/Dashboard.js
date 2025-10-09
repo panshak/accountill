@@ -5,7 +5,7 @@ import { toCommas } from "../../utils/utils";
 import { Check, Pie, Bag, Card, Clock, Frown } from "./Icons";
 import moment from "moment";
 
-const DashboardModern = ({ invoices, paymentHistory }) => {
+const Dashboard = ({ invoices, paymentHistory }) => {
   const unpaidInvoice = invoices?.filter((i) => i.status === "Unpaid");
   const paid = invoices?.filter((i) => i.status === "Paid");
   const partial = invoices?.filter((i) => i.status === "Partial");
@@ -117,4 +117,4 @@ const DashboardModern = ({ invoices, paymentHistory }) => {
   );
 };
 
-export default DashboardModern;
+export default Dashboard;
