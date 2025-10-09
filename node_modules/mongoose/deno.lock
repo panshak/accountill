@@ -1,0 +1,53 @@
+{
+  "version": "4",
+  "redirects": {
+    "https://deno.land/std/flags/mod.ts": "https://deno.land/std@0.224.0/flags/mod.ts"
+  },
+  "remote": {
+    "https://deno.land/std@0.224.0/assert/assert_exists.ts": "43420cf7f956748ae6ed1230646567b3593cb7a36c5a5327269279c870c5ddfd",
+    "https://deno.land/std@0.224.0/assert/assertion_error.ts": "ba8752bd27ebc51f723702fac2f54d3e94447598f54264a6653d6413738a8917",
+    "https://deno.land/std@0.224.0/flags/mod.ts": "88553267f34519c8982212185339efdb2d2e62c159ec558f47eb50c8952a6be3"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@mongodb-js/mongodb-downloader@~0.4.2",
+        "npm:acquit-ignore@0.2.1",
+        "npm:acquit-require@0.1.1",
+        "npm:acquit@1.4.0",
+        "npm:ajv@8.17.1",
+        "npm:broken-link-checker@~0.7.8",
+        "npm:cheerio@1.1.2",
+        "npm:dox@1.0.0",
+        "npm:eslint-plugin-markdown@^5.1.0",
+        "npm:eslint-plugin-mocha-no-only@1.2.0",
+        "npm:eslint@9.25.1",
+        "npm:express@^4.19.2",
+        "npm:fs-extra@11.3",
+        "npm:highlight.js@11.11.1",
+        "npm:lodash.isequal@4.5.0",
+        "npm:lodash.isequalwith@4.4.0",
+        "npm:markdownlint-cli2@~0.18.1",
+        "npm:marked@15.0.12",
+        "npm:mkdirp@^3.0.1",
+        "npm:mocha@11.7.1",
+        "npm:moment@2.30.1",
+        "npm:mongodb-memory-server@10.1.4",
+        "npm:mongodb-runner@^5.8.2",
+        "npm:mongodb@6.18",
+        "npm:mpath@0.9.0",
+        "npm:mquery@5.0.0",
+        "npm:ms@2.1.3",
+        "npm:ncp@2",
+        "npm:nyc@15.1.0",
+        "npm:pug@3.0.3",
+        "npm:sift@17.1.3",
+        "npm:sinon@21.0.0",
+        "npm:tsd@0.32.0",
+        "npm:typescript-eslint@^8.31.1",
+        "npm:typescript@5.8.3",
+        "npm:uuid@11.1.0"
+      ]
+    }
+  }
+}
