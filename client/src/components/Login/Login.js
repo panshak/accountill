@@ -1,136 +1,94 @@
-import React, { useState } from 'react'
-import Field from './Field'
-import useStyles from './styles'
-import styles from './Login.module.css'
-import {GoogleLogin, GoogleOAuthProvider} from '@react-oauth/google'
-import jwtDecode from 'jwt-decode'
-import {useDispatch} from 'react-redux'
-import { useHistory, Link } from 'react-router-dom'
-import { signup, signin } from '../../actions/auth'
-import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-import { createProfile } from '../../actions/profile'
-import { useSnackbar } from 'react-simple-snackbar'
-import CircularProgress from '@material-ui/core/CircularProgress';
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@date-io/date-fns": "^1.3.13",
+    "@devexpress/dx-react-chart": "^4.0.11",
+    "@devexpress/dx-react-chart-material-ui": "^4.0.11",
+    "@devexpress/dx-react-core": "^2.7.6",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
 
-
-
-const initialState ={ firstName: '', lastName: '', email: '', password: '', confirmPassword: '', profilePicture: '', bio: ''}
-
-const Login = () => {
-
-    const classes = useStyles();
-    const [formData, setFormData] = useState(initialState)
-    const [isSignup, setIsSignup] = useState(false)
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const [showPassword, setShowPassword] = useState(false);
-     // eslint-disable-next-line 
-    const [openSnackbar, closeSnackbar] = useSnackbar()
-    const user = JSON.parse(localStorage.getItem('profile'))
-    const [loading, setLoading] = useState(false)
     
-    const handleShowPassword = () => setShowPassword(!showPassword);
-    const handleChange =(e)=> {
-        setFormData( {...formData, [e.target.name] : e.target.value} )
-    }
+        
+          
+    
 
-    const handleSubmit =(e) => {
-        e.preventDefault()
-        if(isSignup) {
-            dispatch(signup(formData, openSnackbar, setLoading))
-        } else {
-            dispatch(signin(formData, openSnackbar, setLoading))
-        }
-        setLoading(true)
-    }
+        
+        Expand All
+    
+    @@ -26,12 +26,13 @@
+  
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "@material-ui/pickers": "^3.3.10",
+    "@react-oauth/google": "^0.9.0",
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "apexcharts": "^3.28.1",
+    "axios": "^0.21.1",
+    "date-fns": "^2.0.0-beta.5",
+    "file-saver": "^2.0.5",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "react": "^17.0.2",
+    "react-apexcharts": "^1.3.9",
+    "react-dom": "^17.0.2",
+    "react-dropzone": "^11.3.4",
+    "react-google-button": "^0.8.0",
+    "react-multiple-select-dropdown-lite": "^2.0.4",
+    "react-nice-dates": "^3.1.0",
+    "react-progress-button": "^5.1.0",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^5.0.1",
+    "react-simple-snackbar": "^1.1.11",
+    "react-tiny-fab": "^4.0.3",
+    "recharts": "^2.0.9",
 
-
-    const switchMode =() => {
-        setIsSignup((prevState) => !prevState)
-    }
-
-    const googleSuccess = async (res) => {
-        const result = jwtDecode(res.credential);
-        const token = res?.credential;
-        dispatch(createProfile({name: result?.name, email: result?.email, userId: result?.jti, phoneNumber: '', businessName: '', contactAddress: '', logo: result?.picture, website: ''}))
-
-        try {
-            dispatch({ type: "AUTH", data: {result, token}})
-
-            window.location.href='/dashboard'
+    
+          
             
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    const googleError =(error) => {
-        console.log(error)
-        console.log("Google Sign In was unseccassful. Try again later")
-    }
+    
 
-
-    if(user) {
-      history.push('/dashboard')
-    }
-
-    return (
-        <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper} elevation={2}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            { isSignup && (
-            <>
-              <Field name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-              <Field name="lastName" label="Last Name" handleChange={handleChange} half />
-            </>
-            )}
-            <Field name="email" label="Email Address" handleChange={handleChange} type="email" />
-            <Field name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
-            { isSignup && <Field name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
-          </Grid>
-          <div className={styles.buttons}>
-               <div>
-                    {/* <button className={styles.submitBtn}> { isSignup ? 'Sign Up' : 'Sign In' }</button> */}
-                    {/* <ProgressButton>{ isSignup ? 'Sign Up' : 'Sign In' }</ProgressButton> */}
-                    {loading ? <CircularProgress /> 
-                    : 
-                    <button className={styles.loginBtn} >{ isSignup ? 'Sign Up' : 'Sign In' }</button>
-                    }
-                    
-                </div>
-                <div className={styles.option}>
-                  <span>or</span>
-                </div>
-                <div> 
-                  <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-                    <GoogleLogin
-                      onSuccess={googleSuccess}
-                      onError={googleError}
-                      text='continue_with'
-                      useOneTap
-                      auto_select
-                      state_cookie_domain='single_host_origin'
-                    />
-                  </GoogleOAuthProvider>
-                </div>
-          </div>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Button onClick={switchMode}>
-                { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
-              </Button>
-            </Grid>
-          </Grid>
-        <Link to="forgot"><p style={{textAlign: 'center', color: '#1d7dd6', marginTop: '20px'}}>Forgotten Password?</p></Link>
-        </form>
-      </Paper>
-    </Container>
-    )
+          
+          Expand Down
+    
+    
+  
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
+    "uuid": "^8.3.2",
+    "web-vitals": "^1.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.15.2",
+    "css-loader": "^6.2.0"
+  }
 }
-
-export default Login
