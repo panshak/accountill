@@ -1,0 +1,12 @@
+# Node
+node_modules/
+npm-debug.log
+.DS_Store
+
+# Environment files
+.env
+
+# Build folders
+client/build
+server/node_modules
+client/node_modules
