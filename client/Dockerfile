@@ -1,16 +1,15 @@
-FROM node:14-alpine AS builder
+FROM node:18-alpine AS builder
 ENV NODE_ENV production
 
 WORKDIR /app
 
 COPY client/package.json .
 COPY client/yarn.lock .
-RUN yarn install --production
+RUN yarn install --production --network-timeout 240000
 
 COPY client .
 
 RUN npm run build
-
 
 FROM nginx:1.21.0-alpine as production
 ENV NODE_ENV production
