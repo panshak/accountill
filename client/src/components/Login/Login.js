@@ -35,15 +35,32 @@ const Login = () => {
         setFormData( {...formData, [e.target.name] : e.target.value} )
     }
 
-    const handleSubmit =(e) => {
-        e.preventDefault()
-        if(isSignup) {
-            dispatch(signup(formData, openSnackbar, setLoading))
-        } else {
-            dispatch(signin(formData, openSnackbar, setLoading))
-        }
-        setLoading(true)
+    // const handleSubmit =(e) => {
+    //     e.preventDefault()
+    //     if(isSignup) {
+    //         dispatch(signup(formData, openSnackbar, setLoading))
+    //     } else {
+    //         dispatch(signin(formData, openSnackbar, setLoading))
+    //     }
+    //     setLoading(true)
+    // }
+
+
+    // client/src/components/Login/Login.js
+
+const handleSubmit =(e) => {
+    e.preventDefault()
+    if(isSignup) {
+        dispatch(signup(formData, openSnackbar, setLoading))
+    } else {
+        // RE-ENABLE THE CORRECT SIGN IN DISPATCH
+        dispatch(signin(formData, openSnackbar, setLoading))
     }
+    setLoading(true)
+}
+
+
+
 
 
     const switchMode =() => {

@@ -1,4 +1,3 @@
-
 //Copyright (c) 2022 Panshak Solomon
 
 import express from 'express'
@@ -9,6 +8,10 @@ import nodemailer from 'nodemailer'
 import pdf from 'html-pdf'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
+
+// FIX: Load environment variables IMMEDIATELY after imports
+dotenv.config() 
+// END FIX
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -22,8 +25,9 @@ import pdfTemplate from './documents/index.js'
 // import invoiceTemplate from './documents/invoice.js'
 import emailTemplate from './documents/email.js'
 
+console.log('ENV TEST:', process.env.TEST_VAR);
+
 const app = express()
-dotenv.config()
 
 app.use((express.json({ limit: "30mb", extended: true})))
 app.use((express.urlencoded({ limit: "30mb", extended: true})))
@@ -55,7 +59,7 @@ app.post('/send-pdf', (req, res) => {
 
     // pdf.create(pdfTemplate(req.body), {}).toFile('invoice.pdf', (err) => {
     pdf.create(pdfTemplate(req.body), options).toFile('invoice.pdf', (err) => {
-       
+        
           // send mail with defined transport object
         transporter.sendMail({
             from: ` Accountill <hello@accountill.com>`, // sender address
@@ -95,7 +99,7 @@ app.post('/create-pdf', (req, res) => {
 
 //SEND PDF INVOICE
 app.get('/fetch-pdf', (req, res) => {
-     res.sendFile(`${__dirname}/invoice.pdf`)
+      res.sendFile(`${__dirname}/invoice.pdf`)
 })
 
 
@@ -112,4 +116,3 @@ mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true})
 
 mongoose.set('useFindAndModify', false)
 mongoose.set('useCreateIndex', true)
-

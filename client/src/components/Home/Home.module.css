@@ -1,86 +1,91 @@
-/* .pageContainer {
- background-color: white;
-} */
-
 .header {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   height: 60px;
-  /* background-color: white; */
-  border-bottom: 1px solid rgb(230, 230, 230);
+  /* Add subtle shadow for modern look */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); 
+  border-bottom: none; /* Remove border-bottom after adding shadow */
 }
 .logo {
   width: 70px;
   height: 70px;
 }
 
+/* === ENHANCEMENT: MODERN CTA BUTTON === */
 .login {
-  border: 1px solid rgb(51, 51, 216);
-  padding: 12px 30px;
-  border-radius: 50px;
-  background-color: white;
+  /* Use a strong accent color (Deep Teal) */
+  background-color: #008080; 
+  color: white; /* White text for contrast */
+  border: none; /* Remove border */
+  padding: 12px 35px; /* Slightly more horizontal padding */
+  border-radius: 8px; /* Square off the corners slightly */
   cursor: pointer;
-  font-size: 15px;
+  font-size: 16px; /* Slightly larger font */
+  font-weight: 600; /* Bolder text */
   outline: none;
-  margin-right: 20px;
-  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  margin-right: 30px; /* More space on the right */
+  /* Add smooth hover transition */
+  transition: all 0.3s ease; 
+}
+/* Optional: Add hover effect for interactivity */
+.login:hover {
+    background-color: #006666; 
 }
 
+
+/* === ENHANCEMENT: IMPROVED SPACING & TYPOGRAPHY === */
 .hero {
-  width: 50%;
-  margin: 30px auto;
-  margin-top: 70px;
-  line-height: 60px;
+  width: 70%; /* Increase width slightly for better flow */
+  margin: 50px auto; /* Increase margin top for more breathing room */
+  margin-top: 100px;
+  line-height: normal; /* Change line-height to 'normal' for cleaner block formatting */
+  text-align: center; /* Ensure all hero content is centered */
 }
 
 .hero h1 {
-  font-weight: 500;
-  font-size: 50px;
-  line-height: 50px;
-  text-align: center;
+  /* Use a slightly larger, bolder font */
+  font-size: 3.5rem; /* Increase size for impact */
+  font-weight: 800; /* Very bold */
+  color: #1a1a1a; /* Darker text for professionalism */
+  line-height: 1.2; 
+  margin-bottom: 25px;
+  /* Add font-family if you're importing a modern font like Poppins or Roboto */
 }
 
+
 .paragraph {
-  margin-top: 20px;
+  margin-top: 25px;
   text-align: center;
-  line-height: 20px;
-  color: gray;
+  line-height: 1.5; /* Better line spacing for readability */
+  color: #666; /* Slightly darker gray for better accessibility */
+  font-size: 1.1rem;
 }
 
 .imgContainer {
-  margin-top: -80px;
+  margin-top: 50px; /* Increase margin to push the image down from the text */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .hero img {
-  width: 1200px;
+  width: 1000px; /* Reduce width slightly if it was too large */
   margin: 0px auto;
+  /* Add subtle shadow to the image container for depth */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px; /* Soften the corners */
 }
 
-
-.footerText {
-  border-top: solid 1px rgb(219, 219, 219);
-  width: 80%;
-  margin: 0px auto;
-  text-align: center;
-  padding: 25px;
-  text-align: center;
-}
-
-
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
+/* === ENHANCEMENT: RESPONSIVENESS ADJUSTMENT === */
 @media only screen and (max-width: 600px) {
 
   .hero {
-    width: 80%;
+    width: 90%; /* Use 90% for better spacing on small screens */
+    margin-top: 50px;
   }
 
   .hero img {
-    width: 400px;
-    margin: 70px auto;
+    width: 100%; /* Make the image fully responsive */
+    margin: 30px auto;
   }
-
 }

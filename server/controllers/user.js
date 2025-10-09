@@ -6,34 +6,35 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 const SECRET = process.env.SECRET;
-const HOST =  process.env.SMTP_HOST
-const PORT =  process.env.SMTP_PORT
-const USER =  process.env.SMTP_USER
-const PASS =  process.env.SMTP_PASS
+const HOST = process.env.SMTP_HOST
+const PORT = process.env.SMTP_PORT
+const USER = process.env.SMTP_USER
+const PASS = process.env.SMTP_PASS
 
 import User from '../models/userModel.js'
 import ProfileModel from '../models/ProfileModel.js';
 
 
 export const signin = async (req, res)=> {
-    const { email, password } = req.body //Coming from formData
+    const { email, password } = req.body
 
     try {
         const existingUser = await User.findOne({ email })
         
-        //get userprofile and append to login auth detail
-        const userProfile = await ProfileModel.findOne({ userId: existingUser?._id })
-
+        // 1. CRITICAL FIX: Check if user exists immediately
         if(!existingUser) return res.status(404).json({ message: "User doesn't exist" })
 
-        const isPasswordCorrect  = await bcrypt.compare(password, existingUser.password)
+        // 2. Query the user profile only if the user was found
+        const userProfile = await ProfileModel.findOne({ userId: existingUser._id })
+
+        const isPasswordCorrect = await bcrypt.compare(password, existingUser.password)
 
         if(!isPasswordCorrect) return res.status(400).json({message: "Invalid credentials"})
 
-        //If crednetials are valid, create a token for the user
+        // If credentials are valid, create a token
         const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, SECRET, { expiresIn: "1h" })
         
-        //Then send the token to the client/frontend
+        // Then send the token to the client/frontend
         res.status(200).json({ result: existingUser, userProfile, token })
 
     } catch (error) {
@@ -48,21 +49,39 @@ export const signup = async (req, res)=> {
 
     try {
         const existingUser = await User.findOne({ email })
-        const userProfile = await ProfileModel.findOne({ userId: existingUser?._id })
 
+        // Check if user already exists
         if(existingUser) return res.status(400).json({ message: "User already exist" })
 
+        // Check for password mismatch
         if(password !== confirmPassword) return res.status(400).json({ message: "Password don't match" })
         
         const hashedPassword = await bcrypt.hash(password, 12)
 
+        // 1. CREATE THE USER IN THE DATABASE
         const result = await User.create({ email, password: hashedPassword, name: `${firstName} ${lastName}`, bio })
+
+        // 2. CRITICAL FIX: CREATE A BLANK PROFILE FOR THE NEW USER
+        //    This prevents the app from breaking when the frontend expects a userProfile object.
+        const userProfile = await ProfileModel.create({
+            userId: result._id,
+            name: `${firstName} ${lastName}`,
+            email: email,
+            phoneNumber: '',
+            businessName: '',
+            contactAddress: '',
+            logo: '',
+            website: ''
+        })
 
         const token = jwt.sign({ email: result.email, id: result._id }, SECRET, { expiresIn: "1h" })
         
+        // 3. Send back the newly created user and profile
         res.status(200).json({ result, userProfile, token })
 
     } catch (error) {
+        // Log the actual error to the console for debugging
+        console.log("Signup Error:", error); 
         res.status(500).json({ message: "Something went wrong"}) 
     }
 }
@@ -85,8 +104,8 @@ export const signup = async (req, res)=> {
 export const forgotPassword = (req,res)=>{
 
     const { email } = req.body
-  
-       // NODEMAILER TRANSPORT FOR SENDING POST NOTIFICATION VIA EMAIL
+ 
+        // NODEMAILER TRANSPORT FOR SENDING POST NOTIFICATION VIA EMAIL
         const transporter = nodemailer.createTransport({
             host: HOST,
             port : PORT,
@@ -98,8 +117,8 @@ export const forgotPassword = (req,res)=>{
                 rejectUnauthorized:false
             }
         })
-  
-  
+ 
+ 
     crypto.randomBytes(32,(err,buffer)=>{
         if(err){
             console.log(err)
@@ -127,14 +146,14 @@ export const forgotPassword = (req,res)=>{
                 })
                 res.json({message:"check your email"})
             }).catch((err) => console.log(err))
-  
+ 
         })
     })
-  }
-  
-  
-  
-  export const resetPassword = (req,res)=>{
+}
+ 
+ 
+ 
+export const resetPassword = (req,res)=>{
     const newPassword = req.body.password
     const sentToken = req.body.token
     User.findOne({resetToken:sentToken,expireToken:{$gt:Date.now()}})
@@ -153,4 +172,4 @@ export const forgotPassword = (req,res)=>{
     }).catch(err=>{
         console.log(err)
     })
-  }
+}
