@@ -7,10 +7,21 @@ services:
       dockerfile: ./client/Dockerfile
       target: production
     ports:
-      - '80:80'
+      - "80:80"
     depends_on:
       - server
       - mongo
+
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -20,7 +20,7 @@ services:
+  
     links:
       - server
       - mongo
@@ -20,13 +31,24 @@ services:
     build:
       dockerfile: ./server/Dockerfile
     ports:
-      - '5000:5000'
+      - "5001:5000"
     depends_on:
       - mongo
     links:
+
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -29,4 +29,5 @@ services:
+  
       - mongo
   mongo:
     image: mongo
     container_name: MONGODB
     ports:
-      - '27017'
+      - "27017:27017"
