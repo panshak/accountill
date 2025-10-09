@@ -31,7 +31,7 @@
     "react-progress-button": "^5.1.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.1",
     "react-simple-snackbar": "^1.1.11",
     "react-tiny-fab": "^4.0.3",
     "recharts": "^2.0.9",
