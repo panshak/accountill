@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.3",
+    "mongoose": "^8.19.1"
+  }
+}
