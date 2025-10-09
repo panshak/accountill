@@ -119,13 +119,11 @@ const Login = () => {
                   </GoogleOAuthProvider>
                 </div>
           </div>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Button onClick={switchMode}>
-                { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
-              </Button>
-            </Grid>
-          </Grid>
+          <div className={styles.signupContainer}>
+            <Button onClick={switchMode}>
+              { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
+            </Button>
+          </div>
         <Link to="forgot"><p style={{textAlign: 'center', color: '#1d7dd6', marginTop: '20px'}}>Forgotten Password?</p></Link>
         </form>
       </Paper>
