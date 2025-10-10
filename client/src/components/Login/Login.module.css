@@ -99,21 +99,43 @@
   width: 100%;
   border: 1px solid #0070f3;
   padding: 15px 30px;
-  /* border-radius: 50px; */
   background-color: white;
   color: rgb(24, 24, 24);
   cursor: pointer;
   font-size: 15px;
   outline: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  transition: all 0.3s ease;
+  min-height: 50px;
 }
 
-.loginBtn:hover {
+.loginBtn:hover:not(:disabled) {
   background-color: #0070f3;
   color: white;
 }
 
+.loginBtn:disabled {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  color: #999;
+  cursor: not-allowed;
+}
 
+.loading {
+  color: transparent !important;
+}
+
+.loading:hover {
+  color: transparent !important;
+}
+
+.signupContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 16px;
+}
 
 .switchBtn {
   border-radius: 4px;
