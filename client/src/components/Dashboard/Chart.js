@@ -22,7 +22,7 @@ function Chart({ paymentHistory }) {
   const series = [
 
     {
-      name: "Payment Recieved",
+      name: "Payment Received",
       data: paymentReceived,
     },
   ];
@@ -32,7 +32,7 @@ function Chart({ paymentHistory }) {
       toolbar: {show: false},
     },
     dataLabels: {
-      enabled: false,
+      enabled: false
     },
 
     stroke: {
@@ -44,9 +44,9 @@ function Chart({ paymentHistory }) {
     },
     tooltip: {
       x: {
-        format: "dd/MM/yy",
-      },
-    },
+        format: "dd/MM/yy"
+      }
+    }
   };
 
   return (
@@ -71,4 +71,4 @@ function Chart({ paymentHistory }) {
   );
 }
 
-export default Chart
+export default Chart;
