@@ -1,0 +1,33 @@
+[33mba5251c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m  fixed - Enhance the dashboard Issue
+[33m36469f7[m fixed Google Authentication 2.0 not working properly issue
+[33m399f2a3[m Merge pull request #27 from avisekhgurung/feature/avisekh
+[33mafbcd48[m IS-119 dialog auto closed when clicked outside
+[33mb84703b[m Merge pull request #24 from Sarvgt007/fix-google-login
+[33m902c7d4[m fix: google login with latest npm package
+[33mcd414a7[m change aip route
+[33mb3a5c8d[m update logo
+[33m04931a8[m changed site's title
+[33m05b29fa[m fixed email sender
+[33m9e5e08f[m added noticed to read me
+[33ma2336b5[m Create FUNDING.yml
+[33m4ae4047[m update profile section
+[33ma02fc1e[m fixed autofill payment details
+[33me61927c[m add and autofill payment info/notes
+[33mde3836b[m serialized invoice numbering
+[33m53b757b[m invoice numbers are now serialized
+[33me8c6eb1[m generate invoice numbers serially
+[33m0041454[m Merge pull request #8 from MichelDiz/master
+[33me2a3878[m Merge pull request #5 from Orivoir/master
+[33m6d47609[m add support for Docker
+[33mdd167a5[m add set of light icon files
+[33mbc6b6a5[m set default react favicon
+[33m69c7faf[m style status button
+[33m3953ad6[m update read file
+[33m8affd5f[m address progress bar for logo upload
+[33me2e9b8c[m edit read me
+[33mba4b1a2[m update read me file
+[33m4d020be[m fixed chart and dahsboard layout
+[33m64d608b[m added branding
+[33m23dec43[m edit package.json file
+[33mbbd9501[m fix spellings
+[33m6328eb3[m first commit

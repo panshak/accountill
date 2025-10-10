@@ -1,14 +1,32 @@
 
 //Copyright (c) 2022 Panshak Solomon
 
-import express from 'express'
-import cors from 'cors'
-import mongoose from 'mongoose'
-import dotenv from 'dotenv'
-import nodemailer from 'nodemailer'
-import pdf from 'html-pdf'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
+import dotenv from "dotenv";
+import path from "path";
+
+// ✅ Load .env from server folder explicitly
+dotenv.config({ path: path.resolve("./server/.env") });
+
+console.log("Loaded Google ENV:", process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET, process.env.GOOGLE_CALLBACK_URL);
+
+
+
+
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import nodemailer from 'nodemailer';
+import pdf from 'html-pdf';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import authRoutes from "./routes/auth.js";
+
+
+
+console.log("Loaded DB_URL:", process.env.DB_URL);
+
+
+
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -33,6 +51,10 @@ app.use('/invoices', invoiceRoutes)
 app.use('/clients', clientRoutes)
 app.use('/users', userRoutes)
 app.use('/profiles', profile)
+app.use("/auth", authRoutes);
+
+
+
 
 // NODEMAILER TRANSPORT FOR SENDING INVOICE VIA EMAIL
 const transporter = nodemailer.createTransport({
