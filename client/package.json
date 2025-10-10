@@ -40,12 +40,22 @@
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.1"
   },
+"scripts": {
+  "start": "react-scripts start",
+  "dev": "powershell -NoProfile -Command \"$env:NODE_OPTIONS='--openssl-legacy-provider'; react-scripts start\"",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
+
+
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "start": "react-scripts --openssl-legacy-provider start",
+  "build": "react-scripts --openssl-legacy-provider build",
+  "test": "react-scripts --openssl-legacy-provider test",
+  "eject": "react-scripts eject"
+},
+
   "eslintConfig": {
     "extends": [
       "react-app",
