@@ -11,6 +11,7 @@ import InvoiceDetails from './components/InvoiceDetails/InvoiceDetails'
 import ClientList from './components/Clients/ClientList'
 import NavBar from './components/NavBar/NavBar';
 import Login from './components/Login/Login'
+import { ThemeToggleButton } from './utils/utils';
 import Dashboard from './components/Dashboard/Dashboard';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -28,7 +29,9 @@ function App() {
       <SnackbarProvider>
      {user && <NavBar />} 
       <Header />
+      {/* ThemeToggleButton removed to keep only one instance in the header */}
         <Switch>
+
           <Route path="/" exact component={Home} />
           <Route path="/invoice" exact component={Invoice} />
           <Route path="/edit/invoice/:id" exact component={Invoice} />

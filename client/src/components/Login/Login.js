@@ -107,7 +107,8 @@ const Login = () => {
                   <span>or</span>
                 </div>
                 <div> 
-                  <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+               <GoogleOAuthProvider clientId="your-client-id.apps.googleusercontent.com">
+
                     <GoogleLogin
                       onSuccess={googleSuccess}
                       onError={googleError}
