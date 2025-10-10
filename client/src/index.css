@@ -10,6 +10,17 @@ body {
   background-color: #EEEEEE;
 }
 
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #eaeaea !important;
+}
+
+body.dark-mode * {
+  background-color: transparent;
+  color: #eaeaea !important;
+  border-color: #333 !important;
+}
+
 .tb-container .Mui-focused {
   background-color: white;
    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);

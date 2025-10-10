@@ -3,6 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import decode from 'jwt-decode'
 import styles from './Header.module.css'
+import { ThemeToggleButton } from '../../utils/utils';
 
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -114,12 +115,15 @@ const Header = () => {
 
 
 
-    if(!user) return (
-        <div className={styles.header2}>
-         <img style={{width: '50px', cursor: 'pointer'}} onClick={()=> history.push('/')} src="https://i.postimg.cc/hGZKzdkS/logo.png" alt="arc-invoice" />
-        <button onClick={()=> history.push('/login')} className={styles.login}>Get started</button>
-        </div>
-    )
+  if(!user) return (
+    <div className={styles.header2}>
+     <img style={{width: '50px', cursor: 'pointer'}} onClick={()=> history.push('/')} src="https://i.postimg.cc/hGZKzdkS/logo.png" alt="arc-invoice" />
+     <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginRight: '10px'}}>
+       <button onClick={()=> history.push('/login')} className={styles.login}>Get started</button>
+       <ThemeToggleButton />
+     </div>
+    </div>
+  )
     return (
         <div className={styles.header}>
             <div className={classes.root}>
