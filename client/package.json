@@ -41,7 +41,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -66,6 +66,7 @@
   },
   "devDependencies": {
     "@babel/parser": "^7.15.2",
-    "css-loader": "^6.2.0"
+    "css-loader": "^6.2.0",
+    "cross-env": "^7.0.3"
   }
 }

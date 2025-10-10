@@ -4,25 +4,15 @@ import ReactApexChart from "react-apexcharts";
 function Chart({ paymentHistory }) {
 
 
-    let paymentDates = []
-    for(let i = 0; i < paymentHistory.length; i++) {
-      const newDate = new Date(paymentHistory[i].datePaid);
-      let localDate = newDate.toLocaleDateString();
-            paymentDates = [...paymentDates, localDate]
-    }
-
-
-    let paymentReceived = []
-    for(let i = 0; i < paymentHistory.length; i++) {
-            paymentReceived = [...paymentReceived, paymentHistory[i].amountPaid]
-    }
+    const paymentDates = paymentHistory.map(record => new Date(record.datePaid).toLocaleDateString())
+    const paymentReceived = paymentHistory.map(record => record.amountPaid)
   
 
 
   const series = [
 
     {
-      name: "Payment Recieved",
+      name: "Payment Received",
       data: paymentReceived,
     },
   ];
@@ -39,7 +29,7 @@ function Chart({ paymentHistory }) {
       curve: "smooth",
     },
     xaxis: {
-      type: "datetime",
+      type: "category",
       categories: paymentDates,
     },
     tooltip: {
