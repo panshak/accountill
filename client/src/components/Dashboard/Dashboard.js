@@ -35,11 +35,11 @@ const Dashboard = () => {
 
 
     //sort payment history by date
-   const sortHistoryByDate =  paymentHistory.sort(function(a, b) {
-        var c = new Date(a.datePaid);
-        var d = new Date(b.datePaid);
-        return d-c;
-    });
+   // ✅ Sort payment history by date (newest first)
+const sortHistoryByDate = [...paymentHistory].sort((a, b) => 
+    new Date(b.datePaid) - new Date(a.datePaid)
+);
+
     
     
     let totalPaid = 0
