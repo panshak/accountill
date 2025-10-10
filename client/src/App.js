@@ -1,3 +1,4 @@
+
 //Copyright (c) 2022 Panshak Solomon
 
 import React from 'react'
@@ -16,7 +17,6 @@ import Header from './components/Header/Header';
 import Settings from './components/Settings/Settings';
 import Forgot from './components/Password/Forgot'
 import Reset from './components/Password/Reset'
-import AuthSuccess from './pages/AuthSuccess';
 
 function App() {
 
@@ -40,12 +40,8 @@ function App() {
           <Route path="/customers" exact component={ClientList} />
           <Route path="/forgot" exact component={Forgot} />
           <Route path="/reset/:token" exact component={Reset} />
-          <Route path="/auth/success" exact component={AuthSuccess} />
           <Redirect exact from="/new-invoice" to="/invoice" />
-          {/* Catch all route - redirect to home */}
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
+
         </Switch>
         <Footer />
         </SnackbarProvider>
