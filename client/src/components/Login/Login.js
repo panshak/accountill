@@ -35,14 +35,45 @@ const Login = () => {
         setFormData( {...formData, [e.target.name] : e.target.value} )
     }
 
-    const handleSubmit =(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        if(isSignup) {
-            dispatch(signup(formData, openSnackbar, setLoading))
-        } else {
-            dispatch(signin(formData, openSnackbar, setLoading))
+        if (!formData.email || !formData.password || (isSignup && (!formData.firstName || !formData.lastName))) {
+            openSnackbar("Please fill in all required fields");
+            return;
         }
+        
+        if (isSignup && formData.password !== formData.confirmPassword) {
+            openSnackbar("Passwords don't match");
+            return;
+        }
+
         setLoading(true)
+        try {
+            if(isSignup) {
+                const response = await dispatch(signup(formData, openSnackbar, setLoading));
+                console.log('Signup response:', response);
+                if (response?.success) {
+                    openSnackbar("Sign up successful!");
+                    window.location.href = '/dashboard';
+                } else {
+                    openSnackbar(response?.error || "Sign up failed. Please try again.");
+                }
+            } else {
+                const response = await dispatch(signin(formData, openSnackbar, setLoading));
+                console.log('Signin response:', response);
+                if (response?.success) {
+                    openSnackbar("Sign in successful!");
+                    window.location.href = '/dashboard';
+                } else {
+                    openSnackbar(response?.error || "Sign in failed. Please check your credentials.");
+                }
+            }
+        } catch (error) {
+            console.error('Auth error:', error);
+            openSnackbar("An error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     }
 
 
@@ -95,13 +126,28 @@ const Login = () => {
           </Grid>
           <div className={styles.buttons}>
                <div>
-                    {/* <button className={styles.submitBtn}> { isSignup ? 'Sign Up' : 'Sign In' }</button> */}
-                    {/* <ProgressButton>{ isSignup ? 'Sign Up' : 'Sign In' }</ProgressButton> */}
-                    {loading ? <CircularProgress /> 
-                    : 
-                    <button className={styles.loginBtn} >{ isSignup ? 'Sign Up' : 'Sign In' }</button>
-                    }
-                    
+                    <button 
+                      type="submit"
+                      className={`${styles.loginBtn} ${loading ? styles.loading : ''}`}
+                      disabled={loading}
+                    >
+                      <span style={{ visibility: loading ? 'hidden' : 'visible' }}>
+                        {isSignup ? 'Sign Up' : 'Sign In'}
+                      </span>
+                      {loading && (
+                        <CircularProgress 
+                          size={24}
+                          style={{ 
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            marginTop: -12,
+                            marginLeft: -12,
+                            color: '#1976d2'
+                          }}
+                        />
+                      )}
+                    </button>
                 </div>
                 <div className={styles.option}>
                   <span>or</span>
@@ -119,13 +165,11 @@ const Login = () => {
                   </GoogleOAuthProvider>
                 </div>
           </div>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Button onClick={switchMode}>
-                { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
-              </Button>
-            </Grid>
-          </Grid>
+          <div className={styles.signupContainer}>
+            <Button onClick={switchMode}>
+              { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
+            </Button>
+          </div>
         <Link to="forgot"><p style={{textAlign: 'center', color: '#1d7dd6', marginTop: '20px'}}>Forgotten Password?</p></Link>
         </form>
       </Paper>

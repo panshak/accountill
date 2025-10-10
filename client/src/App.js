@@ -23,27 +23,28 @@ function App() {
   const user = JSON.parse(localStorage.getItem('profile'))
 
   return (
-    <div>
+    <div className="app-container">
       <BrowserRouter>
-      <SnackbarProvider>
-     {user && <NavBar />} 
-      <Header />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/invoice" exact component={Invoice} />
-          <Route path="/edit/invoice/:id" exact component={Invoice} />
-          <Route path="/invoice/:id" exact component={InvoiceDetails} />
-          <Route path="/invoices" exact component={Invoices} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/settings" exact component={Settings} />
-          <Route path="/dashboard" exact component={Dashboard} />
-          <Route path="/customers" exact component={ClientList} />
-          <Route path="/forgot" exact component={Forgot} />
-          <Route path="/reset/:token" exact component={Reset} />
-          <Redirect exact from="/new-invoice" to="/invoice" />
-
-        </Switch>
-        <Footer />
+        <SnackbarProvider>
+          {user && <NavBar />}
+          <div className="main-content">
+            <Header />
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/invoice" exact component={Invoice} />
+              <Route path="/edit/invoice/:id" exact component={Invoice} />
+              <Route path="/invoice/:id" exact component={InvoiceDetails} />
+              <Route path="/invoices" exact component={Invoices} />
+              <Route path="/login" exact component={Login} />
+              <Route path="/settings" exact component={Settings} />
+              <Route path="/dashboard" exact component={Dashboard} />
+              <Route path="/customers" exact component={ClientList} />
+              <Route path="/forgot" exact component={Forgot} />
+              <Route path="/reset/:token" exact component={Reset} />
+              <Redirect exact from="/new-invoice" to="/invoice" />
+            </Switch>
+            <Footer />
+          </div>
         </SnackbarProvider>
       </BrowserRouter>
     </div>

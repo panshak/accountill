@@ -2,12 +2,32 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
-
 }
 
 body {
   background-color: #EEEEEE;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 5rem;
+  transition: margin-left 600ms ease;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    margin-bottom: 5rem;
+  }
+}
+
+.navbar:hover + .main-content {
+  margin-left: 16rem;
 }
 
 .tb-container .Mui-focused {
