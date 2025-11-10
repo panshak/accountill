@@ -4,8 +4,8 @@ import {createInvoice, updateInvoice, deleteInvoice, getInvoice, getInvoicesByUs
 const router = express.Router()
 
 router.get('/count', getTotalCount) //use to generate invoice serial number
-router.get('/:id', getInvoice)
 router.get('/', getInvoicesByUser)
+router.get('/:id', getInvoice)
 router.post('/', createInvoice)
 router.patch('/:id', updateInvoice)
 router.delete('/:id', deleteInvoice)
