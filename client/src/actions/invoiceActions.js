@@ -19,7 +19,8 @@ export const getInvoicesByUser =(searchQuery) => async (dispatch) => {
       dispatch({ type: END_LOADING })
     } catch (error) {
       console.log(error.response)
-      
+      dispatch({ type: END_LOADING })
+      dispatch({ type: FETCH_INVOICE_BY_USER, payload: [] });
     }
   }
 

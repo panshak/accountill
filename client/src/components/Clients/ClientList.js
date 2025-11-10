@@ -33,7 +33,7 @@ const ClientList = () => {
 // )
 
 useEffect(() => {
-    dispatch(getClientsByUser({ search: user?.result?._id || user.result.googleId }));
+    dispatch(getClientsByUser({ search: user?.result?._id || user?.result?.googleId }));
   },[location, dispatch])
 
   if(!user) {
